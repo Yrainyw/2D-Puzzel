@@ -24,6 +24,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="2D Puzzel"
 
+[editor]
+
+naming/scene_name_casing=1
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
