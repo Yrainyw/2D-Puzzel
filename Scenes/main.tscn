@@ -2,5 +2,12 @@
 
 [ext_resource type="Script" uid="uid://by371uc4adlbw" path="res://Scenes/Main.cs" id="1_r150o"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r150o"]
+size = Vector2(64, 64)
+
 [node name="Main" type="Node2D" unique_id=111011638]
 script = ExtResource("1_r150o")
+
+[node name="Cursor" type="Sprite2D" parent="." unique_id=1682199031]
+texture = SubResource("PlaceholderTexture2D_r150o")
+centered = false
