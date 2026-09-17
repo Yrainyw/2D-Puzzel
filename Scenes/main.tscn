@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://uvhmcux83u03" path="res://Resources/highlight_tileset.tres" id="2_idj7w"]
 [ext_resource type="TileSet" uid="uid://ct4qxijf8jrjh" path="res://Resources/tiles.tres" id="2_kln2b"]
 [ext_resource type="PackedScene" uid="uid://0lcfnrwmhjru" path="res://Scenes/Manager/grid_manager.tscn" id="2_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://d12xqwqsfrndb" path="res://Scenes/Building/base.tscn" id="5_pbw6q"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r150o"]
 size = Vector2(64, 64)
@@ -33,3 +34,6 @@ offset_top = 681.0
 offset_right = 124.0
 offset_bottom = 712.0
 text = "Place Building"
+
+[node name="Base" parent="." unique_id=1650665400 instance=ExtResource("5_pbw6q")]
+position = Vector2(448, 320)
