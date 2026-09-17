@@ -1,10 +1,9 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 namespace Game;
 
-public partial class Main : Node2D
+public partial class Main : Node
 {
 	private Sprite2D cursor;
 	private PackedScene buildingScene;
@@ -23,16 +22,15 @@ public partial class Main : Node2D
 		placeBuildingButton.Pressed += OnButtonPressed;
 	}
 
-    public override void _UnhandledInput(InputEvent evt)
-    {
-        if (cursor.Visible && evt.IsActionPressed("left_click") && !occupiedCells.Contains(GetMouseGridCellPosition()))
+	public override void _UnhandledInput(InputEvent evt)
+	{
+		if (hoveredGridCell.HasValue && evt.IsActionPressed("left_click") && !occupiedCells.Contains(hoveredGridCell.Value))
 		{
-			PlaceBuildingAtMousePosition();
+			PlaceBuildingAtHoveredCellPosition();
 			cursor.Visible = false;
 		}
-    }
+	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		var grid_position = GetMouseGridCellPosition();
@@ -48,23 +46,26 @@ public partial class Main : Node2D
 
 	private Vector2 GetMouseGridCellPosition()
 	{
-		var mouse_position = GetGlobalMousePosition();
+		var mouse_position = highlightTilemapLayer.GetGlobalMousePosition();
 		var grid_position = mouse_position / 64;
 
 		grid_position = grid_position.Floor();
 		return grid_position;
 	}
 
-	private void PlaceBuildingAtMousePosition()
+	private void PlaceBuildingAtHoveredCellPosition()
 	{
+		if (!hoveredGridCell.HasValue)
+		{
+			return;
+		}
+
 		var building = buildingScene.Instantiate<Node2D>();
 
 		AddChild(building);
 
-		var grid_position = GetMouseGridCellPosition();
-
-		building.GlobalPosition = grid_position * 64;
-		occupiedCells.Add(grid_position);
+		building.GlobalPosition = hoveredGridCell.Value * 64;
+		occupiedCells.Add(hoveredGridCell.Value);
 		hoveredGridCell = null;
 		UpdateHighlightTilemapLayer();
 	}

@@ -6,7 +6,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r150o"]
 size = Vector2(64, 64)
 
-[node name="Main" type="Node2D" unique_id=111011638]
+[node name="Main" type="Node" unique_id=607546042]
 script = ExtResource("1_r150o")
 
 [node name="HighlightTileMapLayer" type="TileMapLayer" parent="." unique_id=138346392]
