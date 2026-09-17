@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Game;
 
@@ -10,6 +11,7 @@ public partial class Main : Node2D
 	private Button placeBuildingButton;
 	private TileMapLayer highlightTilemapLayer;
 	private Vector2? hoveredGridCell;
+	private HashSet<Vector2> occupiedCells = new();
 
 	public override void _Ready()
 	{
@@ -23,7 +25,7 @@ public partial class Main : Node2D
 
     public override void _UnhandledInput(InputEvent evt)
     {
-        if (cursor.Visible && evt.IsActionPressed("left_click"))
+        if (cursor.Visible && evt.IsActionPressed("left_click") && !occupiedCells.Contains(GetMouseGridCellPosition()))
 		{
 			PlaceBuildingAtMousePosition();
 			cursor.Visible = false;
@@ -62,6 +64,7 @@ public partial class Main : Node2D
 		var grid_position = GetMouseGridCellPosition();
 
 		building.GlobalPosition = grid_position * 64;
+		occupiedCells.Add(grid_position);
 		hoveredGridCell = null;
 		UpdateHighlightTilemapLayer();
 	}
