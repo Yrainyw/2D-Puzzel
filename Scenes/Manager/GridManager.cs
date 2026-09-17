@@ -5,41 +5,44 @@ namespace Game.Manager;
 
 public partial class GridManager : Node
 {
-	private HashSet<Vector2> occupiedCells = new();
-	
+	private HashSet<Vector2I> occupiedCells = new();
+
 	[Export]
 	private TileMapLayer highlightTilemapLayer;
 	[Export]
 	private TileMapLayer baseTerrainTilemapLayer;
 
-	public override void _Ready()
+	public bool IsTilePositionValid(Vector2I tilePosition)
 	{
-	}
+		var customData = baseTerrainTilemapLayer.GetCellTileData(tilePosition);
 
-	public bool IsTilePositionValid(Vector2 tilePosition)
-	{
+		if (customData == null) return false;
+		if (!(bool)customData.GetCustomData("Buildable")) return false;
+
 		return !occupiedCells.Contains(tilePosition);
 	}
 
-	public void MarkTileAsOccupied(Vector2 tilePosition)
+	public void MarkTileAsOccupied(Vector2I tilePosition)
 	{
 		occupiedCells.Add(tilePosition);
 	}
 
-	public void HighlightValidTilesInRadius(Vector2 rootCell, int radius)
+	public void HighlightValidTilesInRadius(Vector2I rootCell, int radius)
 	{
 		ClearHighlightedTiles();
-		
-		for (var x  = rootCell.X - radius; x <= rootCell.X + radius; x++)
+
+		for (var x = rootCell.X - radius; x <= rootCell.X + radius; x++)
 		{
 			for (var y = rootCell.Y - radius; y <= rootCell.Y + radius; y++)
 			{
-				if (!IsTilePositionValid(new Vector2(x, y)))
+				var tilePosition = new Vector2I(x, y);
+
+				if (!IsTilePositionValid(tilePosition))
 				{
 					continue;
 				}
 
-				highlightTilemapLayer.SetCell(new Vector2I((int)x, (int)y), 0, Vector2I.Zero);
+				highlightTilemapLayer.SetCell(tilePosition, 0, Vector2I.Zero);
 			}
 		}
 	}
@@ -49,12 +52,12 @@ public partial class GridManager : Node
 		highlightTilemapLayer.Clear();
 	}
 
-	public Vector2 GetMouseGridCellPosition()
+	public Vector2I GetMouseGridCellPosition()
 	{
-		var mouse_position = highlightTilemapLayer.GetGlobalMousePosition();
-		var grid_position = mouse_position / 64;
+		var mousePosition = highlightTilemapLayer.GetGlobalMousePosition();
+		var gridPosition = mousePosition / 64;
 
-		grid_position = grid_position.Floor();
-		return grid_position;
+		gridPosition = gridPosition.Floor();
+		return new Vector2I((int)gridPosition.X, (int)gridPosition.Y);
 	}
 }

@@ -9,7 +9,7 @@ public partial class Main : Node
 	private Sprite2D cursor;
 	private PackedScene buildingScene;
 	private Button placeBuildingButton;
-	private Vector2? hoveredGridCell;
+	private Vector2I? hoveredGridCell;
 
 	public override void _Ready()
 	{
@@ -32,13 +32,13 @@ public partial class Main : Node
 
 	public override void _Process(double delta)
 	{
-		var grid_position = gridManager.GetMouseGridCellPosition();
+		var gridPosition = gridManager.GetMouseGridCellPosition();
 
-		cursor.GlobalPosition = grid_position * 64;
+		cursor.GlobalPosition = gridPosition * 64;
 
-		if (cursor.Visible && (!hoveredGridCell.HasValue || hoveredGridCell.Value != grid_position))
+		if (cursor.Visible && (!hoveredGridCell.HasValue || hoveredGridCell.Value != gridPosition))
 		{
-			hoveredGridCell = grid_position;
+			hoveredGridCell = gridPosition;
 			gridManager.HighlightValidTilesInRadius(hoveredGridCell.Value, 3);
 		}
 	}
