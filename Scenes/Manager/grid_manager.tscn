@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://0lcfnrwmhjru"]
+
+[ext_resource type="Script" uid="uid://bgvwf1ts55hol" path="res://Scenes/Manager/GridManager.cs" id="1_widhn"]
+
+[node name="Grid Manager" type="Node" unique_id=1977598800]
+script = ExtResource("1_widhn")

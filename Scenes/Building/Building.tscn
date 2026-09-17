@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5cocuti3m3r1"]
 
-[ext_resource type="Texture2D" uid="uid://pj14uve2c3r0" path="res://Assets/Buildings/TowerBlue.png" id="1_vmb8x"]
+[ext_resource type="Texture2D" uid="uid://pj14uve2c3r0" path="res://Assets/Buildings/tower_blue.png" id="1_vmb8x"]
 
 [node name="Building" type="Node2D" unique_id=20794382]
 
