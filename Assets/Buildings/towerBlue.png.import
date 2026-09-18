@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pj14uve2c3r0"
-path="res://.godot/imported/tower_blue.png-091563e30e216d4ea0d23003fe3864cb.ctex"
+path="res://.godot/imported/towerBlue.png-e9ed87082426e4f2efceab1e77778513.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buildings/tower_blue.png"
-dest_files=["res://.godot/imported/tower_blue.png-091563e30e216d4ea0d23003fe3864cb.ctex"]
+source_file="res://Assets/Buildings/towerBlue.png"
+dest_files=["res://.godot/imported/towerBlue.png-e9ed87082426e4f2efceab1e77778513.ctex"]
 
 [params]
 

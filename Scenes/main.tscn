@@ -40,9 +40,16 @@ tile_set = ExtResource("2_idj7w")
 texture = SubResource("PlaceholderTexture2D_r150o")
 centered = false
 
-[node name="PlaceBuildingButton" type="Button" parent="." unique_id=1547324217]
+[node name="PlaceTowerButton" type="Button" parent="." unique_id=1547324217]
 offset_left = 7.0
 offset_top = 681.0
 offset_right = 124.0
 offset_bottom = 712.0
-text = "Place Building"
+text = "Place Tower"
+
+[node name="PlaceVillageButton" type="Button" parent="." unique_id=2117593257]
+offset_left = 140.0
+offset_top = 680.0
+offset_right = 257.0
+offset_bottom = 711.0
+text = "Place Village"
