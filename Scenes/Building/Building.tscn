@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://c5cocuti3m3r1"]
 
+[ext_resource type="PackedScene" uid="uid://dc1f25ev6fa2h" path="res://Scenes/Component/buildingComponent.tscn" id="1_05d3p"]
 [ext_resource type="Texture2D" uid="uid://pj14uve2c3r0" path="res://Assets/Buildings/tower_blue.png" id="1_vmb8x"]
 
 [node name="Building" type="Node2D" unique_id=20794382]
+
+[node name="BuildingComponent" parent="." unique_id=210722747 instance=ExtResource("1_05d3p")]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=589159292]
 position = Vector2(-1, 0)

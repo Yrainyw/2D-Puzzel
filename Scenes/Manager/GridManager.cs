@@ -8,7 +8,7 @@ namespace Game.Manager;
 
 public partial class GridManager : Node
 {
-	private HashSet<Vector2I> occupiedCells = new();
+	private HashSet<Vector2I> validBuildableTiles = new();
 
 	[Export]
 	private TileMapLayer highlightTilemapLayer;
@@ -25,24 +25,19 @@ public partial class GridManager : Node
 		var customData = baseTerrainTilemapLayer.GetCellTileData(tilePosition);
 
 		if (customData == null) return false;
-		if (!(bool)customData.GetCustomData("Buildable")) return false;
-
-		return !occupiedCells.Contains(tilePosition);
+		return (bool)customData.GetCustomData("Buildable");
 	}
 
-	public void MarkTileAsOccupied(Vector2I tilePosition)
+	public bool IsTilePositionBuildable(Vector2I tilePosition)
 	{
-		occupiedCells.Add(tilePosition);
+		return validBuildableTiles.Contains(tilePosition);
 	}
 
 	public void HighlightBuildableTiles()
 	{
-		ClearHighlightedTiles();
-		var buildingComponents = GetTree().GetNodesInGroup(nameof(BuildingComponent)).Cast<BuildingComponent>();
-
-		foreach (var building in buildingComponents)
+		foreach (var tilePosition in validBuildableTiles)
 		{
-			HighlightValidTilesInRadius(building.GetGridCellPosition(), building.BuildableRadius);
+			highlightTilemapLayer.SetCell(tilePosition, 0, Vector2I.Zero);
 		}
 	}
 
@@ -60,28 +55,29 @@ public partial class GridManager : Node
 		return new Vector2I((int)gridPosition.X, (int)gridPosition.Y);
 	}
 
-	private void HighlightValidTilesInRadius(Vector2I rootCell, int radius)
+	private void UpdateValidBuildableTiles(BuildingComponent buildingComponent)
 	{
-		for (var x = rootCell.X - radius; x <= rootCell.X + radius; x++)
+		var rootCell = buildingComponent.GetGridCellPosition();
+
+		for (var x = rootCell.X - buildingComponent.BuildableRadius; x <= rootCell.X + buildingComponent.BuildableRadius; x++)
 		{
-			for (var y = rootCell.Y - radius; y <= rootCell.Y + radius; y++)
+			for (var y = rootCell.Y - buildingComponent.BuildableRadius; y <= rootCell.Y + buildingComponent.BuildableRadius; y++)
 			{
 				var tilePosition = new Vector2I(x, y);
-
 
 				if (!IsTilePositionValid(tilePosition))
 				{
 					continue;
 				}
 
-
-				highlightTilemapLayer.SetCell(tilePosition, 0, Vector2I.Zero);
+				validBuildableTiles.Add(tilePosition);
 			}
 		}
+		validBuildableTiles.Remove(buildingComponent.GetGridCellPosition());
 	}
 
 	private void OnBuildingPlaced(BuildingComponent buildingComponent)
 	{
-		MarkTileAsOccupied(buildingComponent.GetGridCellPosition());
+		UpdateValidBuildableTiles(buildingComponent);
 	}
 }

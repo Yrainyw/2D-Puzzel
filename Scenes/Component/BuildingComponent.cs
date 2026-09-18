@@ -11,7 +11,7 @@ public partial class BuildingComponent : Node2D
 	public override void _Ready()
 	{
 		AddToGroup(nameof(BuildingComponent));
-		GameEvents.EmitBuildingPlaced(this);
+		Callable.From(() => GameEvents.EmitBuildingPlaced(this)).CallDeferred();
 	}
 
 	public Vector2I GetGridCellPosition()
