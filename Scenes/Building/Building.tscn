@@ -7,6 +7,7 @@
 
 [node name="BuildingComponent" parent="." unique_id=210722747 instance=ExtResource("1_05d3p")]
 visible = false
+BuildableRadius = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=589159292]
 position = Vector2(-1, 0)
