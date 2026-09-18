@@ -2,6 +2,7 @@ using Godot;
 using System.Collections.Generic;
 using Game.Component;
 using System.Linq;
+using Game.Autoload;
 
 namespace Game.Manager;
 
@@ -13,6 +14,11 @@ public partial class GridManager : Node
 	private TileMapLayer highlightTilemapLayer;
 	[Export]
 	private TileMapLayer baseTerrainTilemapLayer;
+
+	public override void _Ready()
+	{
+		GameEvents.Instance.BuildingPlaced += OnBuildingPlaced;
+	}
 
 	public bool IsTilePositionValid(Vector2I tilePosition)
 	{
@@ -72,5 +78,10 @@ public partial class GridManager : Node
 				highlightTilemapLayer.SetCell(tilePosition, 0, Vector2I.Zero);
 			}
 		}
+	}
+
+	private void OnBuildingPlaced(BuildingComponent buildingComponent)
+	{
+		MarkTileAsOccupied(buildingComponent.GetGridCellPosition());
 	}
 }
