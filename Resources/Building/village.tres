@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_js2ls")
+DisplayName = "Village"
 ResourceRadius = 3
 BuildingScene = ExtResource("1_gyv74")
 metadata/_custom_type_script = "uid://cirs3cdivedqi"
