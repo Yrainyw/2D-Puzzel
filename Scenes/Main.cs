@@ -16,6 +16,7 @@ public partial class Main : Node
 	private Vector2I? hoveredGridCell;
 	private buildingResource toPlaceBuildingResource;
 
+
 	public override void _Ready()
 	{
 		towerResource = GD.Load<buildingResource>("res://Resources/Building/tower.tres");
@@ -30,6 +31,7 @@ public partial class Main : Node
 
 		placeTowerButton.Pressed += OnPlacedTowerButtonPressed;
 		placeVillageButton.Pressed += OnPlacedVillageButtonPressed;
+		gridManager.ResourceTileUpdated += OnResourceTileUpdated;
 	}
 
 	public override void _UnhandledInput(InputEvent evt)
@@ -83,5 +85,10 @@ public partial class Main : Node
 		toPlaceBuildingResource = villageResource;
 		cursor.Visible = true;
 		gridManager.HighlightBuildableTiles();
+	}
+
+	private void OnResourceTileUpdated(int resourCount)
+	{
+		GD.Print(resourCount);
 	}
 }
