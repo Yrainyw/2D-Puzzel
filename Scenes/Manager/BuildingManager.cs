@@ -1,13 +1,15 @@
 using Game.UI;
 using Godot;
 using Game.Resources.Building;
-using System.Runtime.CompilerServices;
 using Game.Building;
 
 namespace Game.Manager;
 
 public partial class BuildingManager : Node
 {
+	private readonly StringName ACTION_LEFT_CLICK = "left_click"; 
+	private readonly StringName ACTION_CANCEL = "cancel";
+
 	[Export]
 	private GridManager gridManager;
 
@@ -36,7 +38,15 @@ public partial class BuildingManager : Node
 
 	public override void _UnhandledInput(InputEvent evt)
 	{
-		if (hoveredGridCell.HasValue && toPlaceBuildingResource != null && evt.IsActionPressed("left_click") && IsBuildingPlaceableAtTile(hoveredGridCell.Value))
+		if (evt.IsActionPressed(ACTION_CANCEL))
+		{
+			ClearBuildingGhost();
+		}
+		else if (
+			hoveredGridCell.HasValue && 
+			toPlaceBuildingResource != null && 
+			evt.IsActionPressed(ACTION_LEFT_CLICK) && 
+			IsBuildingPlaceableAtTile(hoveredGridCell.Value))
 		{
 			PlaceBuildingAtHoveredCellPosition();
 		}
@@ -87,10 +97,20 @@ public partial class BuildingManager : Node
 		var building = toPlaceBuildingResource.BuildingScene.Instantiate<Node2D>();
 		ySortRoot.AddChild(building);
 		building.GlobalPosition = hoveredGridCell.Value * 64;
+		currentlyUsedResourceCount += toPlaceBuildingResource.ResourceCost;
+		ClearBuildingGhost();
+	}
+
+	private void ClearBuildingGhost()
+	{
 		hoveredGridCell = null;
 		gridManager.ClearHighlightedTiles();
-		currentlyUsedResourceCount += toPlaceBuildingResource.ResourceCost;
-		buildingGhost.QueueFree();
+
+		if (IsInstanceValid(buildingGhost))
+		{
+			buildingGhost.QueueFree();
+		}
+
 		buildingGhost = null;
 	}
 
