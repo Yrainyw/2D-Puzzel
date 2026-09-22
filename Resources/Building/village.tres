@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d26tqqltwols" path="res://Scenes/Building/village.tscn" id="1_gyv74"]
 [ext_resource type="Script" uid="uid://cirs3cdivedqi" path="res://Resources/Building/buildingResource.cs" id="1_js2ls"]
+[ext_resource type="PackedScene" uid="uid://f4bgmknapfud" path="res://Scenes/Building/Sprite/VillageSprite2D.tscn" id="2_khgtg"]
 
 [resource]
 script = ExtResource("1_js2ls")
@@ -9,4 +10,5 @@ DisplayName = "Village"
 ResourceCost = 2
 ResourceRadius = 3
 BuildingScene = ExtResource("1_gyv74")
+SpriteScene = ExtResource("2_khgtg")
 metadata/_custom_type_script = "uid://cirs3cdivedqi"
