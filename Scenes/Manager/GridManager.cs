@@ -96,6 +96,7 @@ public partial class GridManager : Node
 	{
 		var result = new List<TileMapLayer>();
 		var children = rootTileMapLayer.GetChildren();
+
 		children.Reverse();
 
 		foreach (var child in children){
@@ -104,6 +105,7 @@ public partial class GridManager : Node
 				result.AddRange(GetAllTilemapLayers(childLayer));
 			}
 		}
+
 		result.Add(rootTileMapLayer);
 		return result;
 	}
@@ -170,6 +172,7 @@ public partial class GridManager : Node
 	{
 		var buildingComponents = GetTree().GetNodesInGroup(nameof(BuildingComponent)).Cast<BuildingComponent>();
 		var occupiedTiles = buildingComponents.Select(x => x.GetGridCellPosition()).ToHashSet();
+		
 		return occupiedTiles;
 	}
 

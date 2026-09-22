@@ -27,6 +27,7 @@ public partial class GameUI : MarginContainer
 		foreach (var buildingResource in buildingResources)
 		{
 			var buildingButton = new Button();
+			
 			buildingButton.Text = $"Place {buildingResource.DisplayName}";
 			hBoxContainer.AddChild(buildingButton);
 			buildingButton.Pressed += () =>
