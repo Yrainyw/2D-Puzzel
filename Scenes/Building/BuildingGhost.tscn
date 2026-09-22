@@ -1,4 +1,8 @@
 [gd_scene format=3 uid="uid://cbpi5dhsumq4i"]
 
+[ext_resource type="Script" uid="uid://c3fcy5novxmln" path="res://Scenes/Building/BuildingGhost.cs" id="1_nkpqd"]
+
 [node name="BuildingGhost" type="Node2D" unique_id=1688694891]
 y_sort_enabled = true
+position = Vector2(-1, 0)
+script = ExtResource("1_nkpqd")
