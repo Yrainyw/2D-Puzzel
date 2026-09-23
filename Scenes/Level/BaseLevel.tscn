@@ -20,6 +20,8 @@ script = ExtResource("1_r150o")
 highlightTilemapLayer = NodePath("../HighlightTileMapLayer")
 baseTerrainTilemapLayer = NodePath("../YSortRoot/BaseTerrainTileMapLayer")
 
+[node name="GameUI" parent="." unique_id=1336956338 instance=ExtResource("6_v1gob")]
+
 [node name="BuildingManager" parent="." unique_id=946365415 node_paths=PackedStringArray("gridManager", "gameUI", "ySortRoot") instance=ExtResource("3_jw32o")]
 gridManager = NodePath("../GridManager")
 gameUI = NodePath("../GameUI")
@@ -48,5 +50,3 @@ unique_name_in_owner = true
 [node name="HighlightTileMapLayer" type="TileMapLayer" parent="." unique_id=138346392]
 modulate = Color(1, 1, 1, 0.47058824)
 tile_set = ExtResource("2_idj7w")
-
-[node name="GameUI" parent="." unique_id=1336956338 instance=ExtResource("6_v1gob")]
