@@ -4,7 +4,7 @@
 
 [node name="VillageSprite2D" type="Sprite2D" unique_id=52717032]
 y_sort_enabled = true
-position = Vector2(32, 32)
+position = Vector2(64, 96)
 texture = ExtResource("1_d66np")
 centered = false
-offset = Vector2(-64, -140)
+offset = Vector2(-64, -172)
