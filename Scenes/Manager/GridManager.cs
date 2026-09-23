@@ -11,6 +11,7 @@ public partial class GridManager : Node
 {
 	private const string IS_BUILDABLE = "is_buildable";
 	private const string IS_WOOD = "is_wood";
+	private const string IS_IGNORE = "is_ignored";
 
 	[Signal]
 	public delegate void ResourceTileUpdatedEventHandler(int collectedTiles);
@@ -43,7 +44,7 @@ public partial class GridManager : Node
 		{
 			var customData = layer.GetCellTileData(tilePosition);
 
-			if (customData == null) continue;
+			if (customData == null || (bool)customData.GetCustomData(IS_IGNORE)) continue;
 			return (bool)customData.GetCustomData(dataName);
 		}
 		return false;
