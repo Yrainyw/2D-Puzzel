@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://vrwjnql4loab"]
+
+[ext_resource type="Script" uid="uid://bl46ojflng58j" path="res://Scenes/GameCamera.cs" id="1_jhrtl"]
+
+[node name="GameCamera" type="Camera2D" unique_id=1938217633]
+script = ExtResource("1_jhrtl")
