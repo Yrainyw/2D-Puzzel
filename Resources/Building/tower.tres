@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="buildingResource" format=3 uid="uid://c70222thn37jw"]
 
-[ext_resource type="PackedScene" uid="uid://c5cocuti3m3r1" path="res://Scenes/Building/tower.tscn" id="1_6g87a"]
+[ext_resource type="PackedScene" uid="uid://c5cocuti3m3r1" path="res://Scenes/Building/Tower.tscn" id="1_6g87a"]
 [ext_resource type="Script" uid="uid://cirs3cdivedqi" path="res://Resources/Building/buildingResource.cs" id="1_s8j4c"]
 [ext_resource type="PackedScene" uid="uid://d1hfrjfg2yn4x" path="res://Scenes/Building/Sprite/TowerSprite2D.tscn" id="2_v0mer"]
 
