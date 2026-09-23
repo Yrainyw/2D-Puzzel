@@ -15,6 +15,9 @@ public partial class GridManager : Node
 	[Signal]
 	public delegate void ResourceTileUpdatedEventHandler(int collectedTiles);
 
+	[Signal]
+	public delegate void GridStateUpdatedEventHandler();
+
 	private HashSet<Vector2I> validBuildableTiles = new();
 	private HashSet<Vector2I> collectedResourceTiles = new();
 	private HashSet<Vector2I> occupiedTiles = new();
@@ -90,10 +93,15 @@ public partial class GridManager : Node
 	public Vector2I GetMouseGridCellPosition()
 	{
 		var mousePosition = highlightTilemapLayer.GetGlobalMousePosition();
-		var gridPosition = mousePosition / 64;
+		return ConvertWorldPositionToTilePosition(mousePosition);
+	}
 
-		gridPosition = gridPosition.Floor();
-		return new Vector2I((int)gridPosition.X, (int)gridPosition.Y);
+	public Vector2I ConvertWorldPositionToTilePosition(Vector2 worldPosition)
+	{
+		var tilePosition = worldPosition / 64;
+		
+		tilePosition = tilePosition.Floor();
+		return new Vector2I((int)tilePosition.X, (int)tilePosition.Y);
 	}
 
 	private List<TileMapLayer> GetAllTilemapLayers(TileMapLayer rootTileMapLayer)
@@ -123,6 +131,7 @@ public partial class GridManager : Node
 
 		validBuildableTiles.UnionWith(validTiles);
 		validBuildableTiles.ExceptWith(occupiedTiles);
+		EmitSignal(SignalName.GridStateUpdated);
 	}
 
 	private void UpdateCollectedResourceTiles(BuildingComponent buildingComponent)
@@ -137,6 +146,8 @@ public partial class GridManager : Node
 		{
 			EmitSignal(SignalName.ResourceTileUpdated, collectedResourceTiles.Count);
 		}
+
+		EmitSignal(SignalName.GridStateUpdated);
 	}
 
 	private void RecalculateGrid(BuildingComponent excludeBuildingComponent)
@@ -153,8 +164,9 @@ public partial class GridManager : Node
 			UpdateValidBuildableTiles(buildingComponent);
 			UpdateCollectedResourceTiles(buildingComponent);
 		}
-		
+
 		EmitSignal(SignalName.ResourceTileUpdated, collectedResourceTiles.Count);
+		EmitSignal(SignalName.GridStateUpdated);
 	}
 
 	private List<Vector2I> GetTilesInRadius(Vector2I rootCell, int radius, Func<Vector2I, bool> filterFn)
