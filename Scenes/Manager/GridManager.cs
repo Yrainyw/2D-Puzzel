@@ -60,14 +60,7 @@ public partial class GridManager : Node
 
 	public bool IsTileAreaBuildable(Rect2I tileArea)
 	{
-		var tiles = new List<Vector2I>();
-		for (int x = tileArea.Position.X; x < tileArea.End.X; x++)
-		{
-			for (int y = tileArea.Position.Y; y < tileArea.End.Y; y++)
-			{
-				tiles.Add(new Vector2I(x, y));
-			}
-		}
+		var tiles = tileArea.ToTiles();
 
 		if (tiles.Count == 0) return false;
 
@@ -77,8 +70,8 @@ public partial class GridManager : Node
 
 		return tiles.All((tilePosition) => {
 			(TileMapLayer tileMapLayer, bool isBuildable) = GetTileCustomData(tilePosition, IS_BUILDABLE);
-			var elevationLayer = tilemapToElevationLayer[tileMapLayer];
 
+			var elevationLayer = tilemapToElevationLayer[tileMapLayer];
 			return isBuildable && validBuildableTiles.Contains(tilePosition) && elevationLayer == targetElevationLayer;
 		});
 	}
