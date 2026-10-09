@@ -35,6 +35,10 @@ project/assembly_name="2D Puzzel"
 
 naming/scene_name_casing=1
 
+[gui]
+
+theme/custom="uid://clxtkaut7ex4d"
+
 [input]
 
 left_click={
