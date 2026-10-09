@@ -3,15 +3,17 @@ using Game.Autoload;
 using Game.Resources.Building;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.Marshalling;
+using System.Linq;
 
 namespace Game.Component;
 
 public partial class BuildingComponent : Node2D
 {
 	[Export(PropertyHint.File, "*.tres")]
-	public string buildingResourcePath;
+	private string buildingResourcePath;
 
 	public buildingResource buildingResource { get; private set; }
+	private HashSet<Vector2I> occupiedTiles = new();
 
 	public override void _Ready()
 	{
@@ -21,7 +23,7 @@ public partial class BuildingComponent : Node2D
 		}
 		
 		AddToGroup(nameof(BuildingComponent));
-		Callable.From(() => GameEvents.EmitBuildingPlaced(this)).CallDeferred();
+		Callable.From(Initialize).CallDeferred();
 	}
 
 	public Vector2I GetGridCellPosition()
@@ -32,24 +34,37 @@ public partial class BuildingComponent : Node2D
 		return new Vector2I((int)gridPosition.X, (int)gridPosition.Y);
 	}
 
-	public List<Vector2I> GetOccupiedCellPositions()
+	public HashSet<Vector2I> GetOccupiedCellPositions()
 	{
-		var result = new List<Vector2I>();
-		var gridPosition = GetGridCellPosition();
+		return occupiedTiles.ToHashSet();
+	}
 
-		for (int x = gridPosition.X; x < gridPosition.X + buildingResource.Dimensions.X; x++)
-		{
-			for (int y = gridPosition.Y; y < gridPosition.Y + buildingResource.Dimensions.Y; y++)
-			{
-				result.Add(new Vector2I(x, y));
-			}
-		}
-		return result;
+	public bool IsTileInBuildingArea(Vector2I tilePosition)
+	{
+		return occupiedTiles.Contains(tilePosition);
 	}
 
 	public void Destroy()
 	{
 		GameEvents.EmitBuildingDestroyed(this);
 		Owner.QueueFree();
+	}
+
+	private void CalculateOccupiedCellPositions()
+	{
+		var gridPosition = GetGridCellPosition();
+		for (int x = gridPosition.X; x < gridPosition.X + buildingResource.Dimensions.X; x++)
+		{
+			for (int y = gridPosition.Y; y < gridPosition.Y + buildingResource.Dimensions.Y; y++)
+			{
+				occupiedTiles.Add(new Vector2I(x, y));
+			}
+		}
+	}
+
+	private void Initialize()
+	{
+		CalculateOccupiedCellPositions();
+		GameEvents.EmitBuildingPlaced(this);
 	}
 }
