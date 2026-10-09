@@ -156,24 +156,8 @@ public partial class BuildingManager : Node
 
 	private bool IsBuildingPlaceableAtArea(Rect2I tileArea)
 	{
-		var tilesInArea = GetTilePositionsInTileArea(tileArea);
-		var allTilesBuildable = tilesInArea.All((tilePosition) => gridManager.IsTilePositionBuildable(tilePosition));
-
+		var allTilesBuildable = gridManager.IsTileAreaBuildable(tileArea);
 		return allTilesBuildable && AvaliableResourceCount >= toPlaceBuildingResource.ResourceCost;
-	}
-
-	private List<Vector2I> GetTilePositionsInTileArea(Rect2I tileArea)
-	{
-		var result = new List<Vector2I>();
-
-		for (int x = tileArea.Position.X; x < tileArea.End.X; x++)
-		{
-			for (int y = tileArea.Position.Y; y < tileArea.End.Y; y++)
-			{
-				result.Add(new Vector2I(x, y));
-			}
-		}
-		return result;
 	}
 
 	private void UpdateHoveredGridArea()
