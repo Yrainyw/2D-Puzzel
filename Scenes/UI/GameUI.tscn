@@ -3,6 +3,25 @@
 [ext_resource type="Script" uid="uid://ci6pvcmqtpuaj" path="res://Scenes/UI/GameUI.cs" id="1_13cgw"]
 [ext_resource type="Resource" uid="uid://c70222thn37jw" path="res://Resources/Building/tower.tres" id="2_xkiwj"]
 [ext_resource type="Resource" uid="uid://cjceh5dklwru4" path="res://Resources/Building/village.tres" id="3_tog36"]
+[ext_resource type="Texture2D" uid="uid://brr3d1l1wovth" path="res://Assets/UI/banner_vertical.png" id="4_tog36"]
+[ext_resource type="Texture2D" uid="uid://jjxfetv0tb44" path="res://Assets/UI/carved_nine_slides.png" id="5_fe2yh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xkiwj"]
+texture = ExtResource("4_tog36")
+texture_margin_left = 32.0
+texture_margin_top = 40.0
+texture_margin_right = 32.0
+texture_margin_bottom = 40.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 24, 128, 144)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tog36"]
+texture = ExtResource("5_fe2yh")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
 
 [node name="GameUI" type="CanvasLayer" unique_id=554289774]
 script = ExtResource("1_13cgw")
@@ -19,7 +38,18 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1519696337]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1326903053]
 layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 16
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_xkiwj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=1971225642]
+layout_mode = 2
+
+[node name="BuildingButton" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1231093841]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tog36")
+
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/BuildingButton" unique_id=1776066348]
+layout_mode = 2
+text = "Place Building"
