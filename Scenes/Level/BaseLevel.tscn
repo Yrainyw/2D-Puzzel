@@ -20,7 +20,8 @@ script = ExtResource("1_r150o")
 highlightTilemapLayer = NodePath("../HighlightTileMapLayer")
 baseTerrainTilemapLayer = NodePath("../YSortRoot/BaseTerrainTileMapLayer")
 
-[node name="GameUI" parent="." unique_id=1336956338 instance=ExtResource("6_v1gob")]
+[node name="GameUI" parent="." unique_id=1336956338 node_paths=PackedStringArray("buildingManager") instance=ExtResource("6_v1gob")]
+buildingManager = NodePath("../BuildingManager")
 
 [node name="BuildingManager" parent="." unique_id=946365415 node_paths=PackedStringArray("gridManager", "gameUI", "ySortRoot") instance=ExtResource("3_jw32o")]
 gridManager = NodePath("../GridManager")

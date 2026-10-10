@@ -4,6 +4,11 @@
 [ext_resource type="Resource" uid="uid://c70222thn37jw" path="res://Resources/Building/tower.tres" id="2_xkiwj"]
 [ext_resource type="Resource" uid="uid://cjceh5dklwru4" path="res://Resources/Building/village.tres" id="3_tog36"]
 [ext_resource type="PackedScene" uid="uid://dcxciaq7wjo6l" path="res://Scenes/UI/BuildingSection.tscn" id="4_tog36"]
+[ext_resource type="Texture2D" uid="uid://bmkwsmclqk5ep" path="res://Assets/wood_icon.png" id="5_fe2yh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npa51"]
+atlas = ExtResource("5_fe2yh")
+region = Rect2(39, 72, 32, 28)
 
 [node name="GameUI" type="CanvasLayer" unique_id=554289774]
 script = ExtResource("1_13cgw")
@@ -25,7 +30,29 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="BuildingSectionContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=1971225642]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=984378189]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=352346830]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1913563884]
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_npa51")
+stretch_mode = 3
+
+[node name="ResourceLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=405364109]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.61960787, 0.5294118, 0.4627451, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 48
+text = "4"
+
+[node name="BuildingSectionContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1971225642]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
