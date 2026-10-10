@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://dcxciaq7wjo6l"]
 
 [ext_resource type="Script" uid="uid://bj6uwj5m3k14k" path="res://Scenes/UI/BuildingSection.cs" id="1_bajt6"]
+[ext_resource type="Texture2D" uid="uid://bmkwsmclqk5ep" path="res://Assets/wood_icon.png" id="2_os5dx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psbsg"]
+atlas = ExtResource("2_os5dx")
+region = Rect2(39, 72, 32, 28)
 
 [node name="BuildingSection" type="PanelContainer" unique_id=195167456]
 theme_type_variation = &"PanelContainerAlternate"
@@ -8,15 +13,49 @@ script = ExtResource("1_bajt6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=840945591]
 layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1830938734]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1306581847]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=1830938734]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.61960787, 0.5294118, 0.4627451, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 32
 text = "Village"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=799256170]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=459422758]
+layout_mode = 2
+texture = SubResource("AtlasTexture_psbsg")
+
+[node name="CostLabel" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1769357892]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.61960787, 0.5294118, 0.4627451, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 32
+text = "4"
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=59949752]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.61960787, 0.5294118, 0.4627451, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+text = "Gathers Wood"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=817639293]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Select ( Cost 4)"
+text = "Select"

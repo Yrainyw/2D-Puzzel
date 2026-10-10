@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_js2ls")
 DisplayName = "Village"
+Description = "Gathers wood"
 Dimensions = Vector2i(2, 2)
 ResourceCost = 2
 ResourceRadius = 3

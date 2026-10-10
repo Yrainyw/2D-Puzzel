@@ -9,6 +9,9 @@ public partial class buildingResource : Resource
 	public string DisplayName { get; private set; }
 
 	[Export]
+	public string Description { get; private set; }
+
+	[Export]
 	public bool IsDeletable { get; private set; } = true;
 
 	[Export]
