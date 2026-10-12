@@ -2,11 +2,8 @@ using Game.UI;
 using Godot;
 using Game.Resources.Building;
 using Game.Building;
-using System;
 using Game.Component;
 using System.Linq;
-using System.Collections.Generic;
-using System.Numerics;
 
 namespace Game.Manager;
 
@@ -17,22 +14,13 @@ public partial class BuildingManager : Node
 	private readonly StringName ACTION_RIGHT_CLICK = "right_click";
 
 	[Signal]
-	public delegate void AvaliableResourceCountChangedEventHandler(int availableResourceCount);
+	public delegate void AvailableResourceCountChangedEventHandler(int availableResourceCount);
 
-	[Export]
-	private int startingResourceCount = 4;
-	
-	[Export]
-	private GridManager gridManager;
-
-	[Export]
-	private GameUI gameUI;
-
-	[Export]
-	private Node2D ySortRoot;
-
-	[Export]
-	private PackedScene buildingGhostScene;
+	[Export] private int startingResourceCount = 4;
+	[Export] private GridManager gridManager;
+	[Export] private GameUI gameUI;
+	[Export] private Node2D ySortRoot;
+	[Export] private PackedScene buildingGhostScene;
 
 	private enum State 
 	{
@@ -46,14 +34,14 @@ public partial class BuildingManager : Node
 	private Rect2I hoveredGridArea = new(Vector2I.Zero, Vector2I.One);
 	private BuildingGhost buildingGhost;
 	private State currentState;
-	private int AvaliableResourceCount => (startingResourceCount + currentResourceCount) - currentlyUsedResourceCount;
+	private int AvailableResourceCount => (startingResourceCount + currentResourceCount) - currentlyUsedResourceCount;
 
 	public override void _Ready()
 	{
 		gridManager.ResourceTileUpdated += OnResourceTileUpdated;
 		gameUI.BuildingResourceSelected += OnBuildingResourceSelected;
-		Callable.From(() => EmitSignal(SignalName.AvaliableResourceCountChanged, AvaliableResourceCount)).CallDeferred();
-		EmitSignal(SignalName.AvaliableResourceCountChanged, AvaliableResourceCount);
+		Callable.From(() => EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount)).CallDeferred();
+		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
 	}
 
 	public override void _UnhandledInput(InputEvent evt)
@@ -116,8 +104,7 @@ public partial class BuildingManager : Node
 			gridManager.HighlightResourceTiles(hoveredGridArea, toPlaceBuildingResource.ResourceRadius);	
 			buildingGhost.SetValid();
 		}
-		else
-		{
+		else {
 			buildingGhost.SetInValid();
 		}
 	}
@@ -130,7 +117,7 @@ public partial class BuildingManager : Node
 		building.GlobalPosition = hoveredGridArea.Position * 64;
 		currentlyUsedResourceCount += toPlaceBuildingResource.ResourceCost;
 		ChangeState(State.Normal);
-		EmitSignal(SignalName.AvaliableResourceCountChanged, AvaliableResourceCount);
+		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
 	}
 
 	private void DestroyBuildingAtHoveredCellPosition()
@@ -145,7 +132,7 @@ public partial class BuildingManager : Node
 
 		currentlyUsedResourceCount -= buildingComponent.buildingResource.ResourceCost;
 		buildingComponent.Destroy();
-		EmitSignal(SignalName.AvaliableResourceCountChanged, AvaliableResourceCount);
+		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
 	}
 
 	private void ClearBuildingGhost()
@@ -163,7 +150,7 @@ public partial class BuildingManager : Node
 	private bool IsBuildingPlaceableAtArea(Rect2I tileArea)
 	{
 		var allTilesBuildable = gridManager.IsTileAreaBuildable(tileArea);
-		return allTilesBuildable && AvaliableResourceCount >= toPlaceBuildingResource.ResourceCost;
+		return allTilesBuildable && AvailableResourceCount >= toPlaceBuildingResource.ResourceCost;
 	}
 
 	private void UpdateHoveredGridArea()
@@ -206,7 +193,7 @@ public partial class BuildingManager : Node
 	private void OnResourceTileUpdated(int resourceCount)
 	{
 		currentResourceCount = resourceCount;
-		EmitSignal(SignalName.AvaliableResourceCountChanged, AvaliableResourceCount);
+		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
 	}
 
 	private void OnBuildingResourceSelected(buildingResource buildingResource)

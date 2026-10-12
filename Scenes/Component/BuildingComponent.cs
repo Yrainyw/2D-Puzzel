@@ -10,8 +10,8 @@ namespace Game.Component;
 public partial class BuildingComponent : Node2D
 {
 	[Export(PropertyHint.File, "*.tres")]
-	private string buildingResourcePath;
 
+	private string buildingResourcePath;
 	public buildingResource buildingResource { get; private set; }
 	private HashSet<Vector2I> occupiedTiles = new();
 
@@ -53,6 +53,7 @@ public partial class BuildingComponent : Node2D
 	private void CalculateOccupiedCellPositions()
 	{
 		var gridPosition = GetGridCellPosition();
+		
 		for (int x = gridPosition.X; x < gridPosition.X + buildingResource.Dimensions.X; x++)
 		{
 			for (int y = gridPosition.Y; y < gridPosition.Y + buildingResource.Dimensions.Y; y++)

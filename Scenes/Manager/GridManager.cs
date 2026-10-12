@@ -24,19 +24,16 @@ public partial class GridManager : Node
 	private HashSet<Vector2I> collectedResourceTiles = new();
 	private HashSet<Vector2I> occupiedTiles = new();
 
-	[Export]
-	private TileMapLayer highlightTilemapLayer;
-
-	[Export]
-	private TileMapLayer baseTerrainTilemapLayer;
+	[Export] private TileMapLayer highlightTilemapLayer;
+	[Export] private TileMapLayer baseTerrainTilemapLayer;
 
 	private List<TileMapLayer> allTilemapLayers;
 	private Dictionary<TileMapLayer, ElevationLayer> tilemapToElevationLayer = new();
 
 	public override void _Ready()
 	{
-		GameEvents.Instance.BuildingPlaced += OnBuildingPlaced;
-		GameEvents.Instance.BuildingDestroyed += OnBuildingDestroyed;
+		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingPlaced, Callable.From<BuildingComponent>(OnBuildingPlaced));
+		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingDestroyed, Callable.From<BuildingComponent>(OnBuildingDestroyed));
 		allTilemapLayers = GetAllTilemapLayers(baseTerrainTilemapLayer);
 		MapTilemapLayersToElevationLayers();	
 	}

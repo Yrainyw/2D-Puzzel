@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bsx6nfg0ylrxk"]
 
+[ext_resource type="Script" uid="uid://bswdm0j2e2y0b" path="res://Scenes/UI/LevelCompleteScreen.cs" id="1_b5jrc"]
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kruyc"]
 load_path = "res://.godot/imported/ribbon_red_three_slides.png-9fde4fa2e8b9626107fc36693208df0c.ctex"
 
@@ -15,6 +17,7 @@ axis_stretch_horizontal = 1
 region_rect = Rect2(0, 0, 192, 61)
 
 [node name="LevelCompleteScreen" type="CanvasLayer" unique_id=1071677402]
+script = ExtResource("1_b5jrc")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1784956186]
 anchors_preset = 15
@@ -22,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=459336001]
 layout_mode = 2
@@ -55,6 +59,7 @@ theme_override_constants/margin_top = 56
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=63015293]
+[node name="NextLevelButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=63015293]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Next Level"

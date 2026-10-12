@@ -11,14 +11,9 @@ public partial class GameUI : CanvasLayer
 
 	private VBoxContainer BuildingSectionContainer;
 
-	[Export]
-	private BuildingManager	buildingManager;
-
-	[Export]
-	private buildingResource[] buildingResources;
-
-	[Export]
-	private PackedScene buildingSectionScene;
+	[Export] private BuildingManager	buildingManager;
+	[Export] private buildingResource[] buildingResources;
+	[Export] private PackedScene buildingSectionScene;
 	
 	private Button placeTowerButton;
 	private Button placeVillageButton;
@@ -29,7 +24,12 @@ public partial class GameUI : CanvasLayer
 		BuildingSectionContainer = GetNode<VBoxContainer>("%BuildingSectionContainer");
 		resourceLabel = GetNode<Label>("%ResourceLabel");
 		CreateBuildingSections();
-		buildingManager.AvaliableResourceCountChanged += OnAvaliableResourceCountChanged;
+		buildingManager.AvailableResourceCountChanged += OnAvailableResourceCountChanged;
+	}
+
+	public void HideUI()
+	{
+		Visible = false;
 	}
 
 	private void CreateBuildingSections()
@@ -47,7 +47,7 @@ public partial class GameUI : CanvasLayer
 		}
 	}
 
-	private void OnAvaliableResourceCountChanged(int availableResourceCount)
+	private void OnAvailableResourceCountChanged(int availableResourceCount)
 	{
 		resourceLabel.Text = availableResourceCount.ToString();
 	}
