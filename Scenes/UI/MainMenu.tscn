@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b5hhy4jc76a01"]
 
+[ext_resource type="Script" uid="uid://bs0m0aqj2qgyd" path="res://Scenes/UI/MainMenu.cs" id="1_jex3y"]
 [ext_resource type="TileSet" uid="uid://ct4qxijf8jrjh" path="res://Resources/tiles.tres" id="2_mjmdf"]
 [ext_resource type="PackedScene" uid="uid://c8ycxmvr0s1b4" path="res://Scenes/Level/util/ElevationLayer.tscn" id="3_72sra"]
 [ext_resource type="PackedScene" uid="uid://d12xqwqsfrndb" path="res://Scenes/Building/Base.tscn" id="3_k8um8"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d26tqqltwols" path="res://Scenes/Building/Village.tscn" id="4_t6w0q"]
 
 [node name="MainMenu" type="Node" unique_id=874091968]
+script = ExtResource("1_jex3y")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1301486679]
 position = Vector2(512, 384)

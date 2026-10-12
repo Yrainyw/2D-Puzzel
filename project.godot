@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="2D Puzzel"
-run/main_scene="uid://ijirc1ppf706"
+run/main_scene="uid://b5hhy4jc76a01"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameEvents="*uid://cdrt0ncqu61xa"
+LevelManager="*uid://d0rjphl3h76hn"
 
 [display]
 
