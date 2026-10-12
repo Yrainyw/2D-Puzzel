@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="buildingResource" format=3 uid="uid://c70222thn37jw"]
+[gd_resource type="Resource" script_class="BuildingResource" format=3 uid="uid://c70222thn37jw"]
 
-[ext_resource type="PackedScene" uid="uid://c5cocuti3m3r1" path="res://Scenes/Building/Tower.tscn" id="1_6g87a"]
-[ext_resource type="Script" uid="uid://cirs3cdivedqi" path="res://Resources/Building/buildingResource.cs" id="1_s8j4c"]
-[ext_resource type="PackedScene" uid="uid://d1hfrjfg2yn4x" path="res://Scenes/Building/Sprite/TowerSprite2D.tscn" id="2_v0mer"]
+[ext_resource type="Script" uid="uid://ij88twtfjw3u" path="res://Resources/Building/BuildingResource.cs" id="1_s8j4c"]
+[ext_resource type="PackedScene" uid="uid://c5cocuti3m3r1" path="res://Scenes/Building/Tower.tscn" id="1_v0mer"]
+[ext_resource type="PackedScene" uid="uid://d1hfrjfg2yn4x" path="res://Scenes/Building/Sprite/TowerSprite2D.tscn" id="2_podkn"]
 
 [resource]
 script = ExtResource("1_s8j4c")
@@ -11,6 +11,5 @@ Description = "Expands buildable area"
 Dimensions = Vector2i(2, 2)
 ResourceCost = 4
 BuildableRadius = 6
-BuildingScene = ExtResource("1_6g87a")
-SpriteScene = ExtResource("2_v0mer")
-metadata/_custom_type_script = "uid://cirs3cdivedqi"
+BuildingScene = ExtResource("1_v0mer")
+SpriteScene = ExtResource("2_podkn")

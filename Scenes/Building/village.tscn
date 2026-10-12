@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d26tqqltwols"]
 
-[ext_resource type="PackedScene" uid="uid://dc1f25ev6fa2h" path="res://Scenes/Component/buildingComponent.tscn" id="1_lrdl3"]
+[ext_resource type="PackedScene" uid="uid://dc1f25ev6fa2h" path="res://Scenes/Component/BuildingComponent.tscn" id="1_lrdl3"]
 [ext_resource type="PackedScene" uid="uid://f4bgmknapfud" path="res://Scenes/Building/Sprite/VillageSprite2D.tscn" id="2_lrdl3"]
 
 [node name="Village" type="Node2D" unique_id=1359663464]

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="buildingResource" format=3 uid="uid://bj14emge3rv1n"]
+[gd_resource type="Resource" script_class="BuildingResource" format=3 uid="uid://bj14emge3rv1n"]
 
-[ext_resource type="Script" uid="uid://cirs3cdivedqi" path="res://Resources/Building/buildingResource.cs" id="1_o5lvn"]
+[ext_resource type="Script" uid="uid://ij88twtfjw3u" path="res://Resources/Building/BuildingResource.cs" id="1_o5lvn"]
 [ext_resource type="PackedScene" uid="uid://d12xqwqsfrndb" path="res://Scenes/Building/Base.tscn" id="1_ocjps"]
 
 [resource]
@@ -10,4 +10,3 @@ IsDeletable = false
 Dimensions = Vector2i(5, 2)
 BuildableRadius = 6
 BuildingScene = ExtResource("1_ocjps")
-metadata/_custom_type_script = "uid://cirs3cdivedqi"

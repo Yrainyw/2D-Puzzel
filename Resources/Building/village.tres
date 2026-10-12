@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="buildingResource" format=3 uid="uid://cjceh5dklwru4"]
+[gd_resource type="Resource" script_class="BuildingResource" format=3 uid="uid://cjceh5dklwru4"]
 
-[ext_resource type="PackedScene" uid="uid://d26tqqltwols" path="res://Scenes/Building/Village.tscn" id="1_gyv74"]
-[ext_resource type="Script" uid="uid://cirs3cdivedqi" path="res://Resources/Building/buildingResource.cs" id="1_js2ls"]
-[ext_resource type="PackedScene" uid="uid://f4bgmknapfud" path="res://Scenes/Building/Sprite/VillageSprite2D.tscn" id="2_khgtg"]
+[ext_resource type="Script" uid="uid://ij88twtfjw3u" path="res://Resources/Building/BuildingResource.cs" id="1_js2ls"]
+[ext_resource type="PackedScene" uid="uid://d26tqqltwols" path="res://Scenes/Building/Village.tscn" id="1_khgtg"]
+[ext_resource type="PackedScene" uid="uid://f4bgmknapfud" path="res://Scenes/Building/Sprite/VillageSprite2D.tscn" id="2_t2r4b"]
 
 [resource]
 script = ExtResource("1_js2ls")
@@ -11,6 +11,5 @@ Description = "Gathers wood"
 Dimensions = Vector2i(2, 2)
 ResourceCost = 2
 ResourceRadius = 3
-BuildingScene = ExtResource("1_gyv74")
-SpriteScene = ExtResource("2_khgtg")
-metadata/_custom_type_script = "uid://cirs3cdivedqi"
+BuildingScene = ExtResource("1_khgtg")
+SpriteScene = ExtResource("2_t2r4b")

@@ -3,7 +3,7 @@ using Godot;
 namespace Game.Resources.Building;
 
 [GlobalClass]
-public partial class buildingResource : Resource
+public partial class BuildingResource : Resource
 {
 	[Export]
 	public string DisplayName { get; private set; }

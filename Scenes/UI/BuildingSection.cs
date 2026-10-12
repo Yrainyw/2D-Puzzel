@@ -22,7 +22,7 @@ public partial class BuildingSection : PanelContainer
 		selectButton.Pressed += OnSelectButtonPressed;
 	}
 
-	public void SetBuildingResource(buildingResource buildingResource)
+	public void SetBuildingResource(BuildingResource buildingResource)
 	{
 		titleLabel.Text = buildingResource.DisplayName;
 		costLabel.Text = $"{buildingResource.ResourceCost}";

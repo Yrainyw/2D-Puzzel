@@ -16,7 +16,11 @@
 script = ExtResource("1_r150o")
 levelCompleteScreenScene = ExtResource("2_toevt")
 
-[node name="GameCamera" parent="." unique_id=1938217633 instance=ExtResource("2_xerb2")]
+[node name="BuildingManager" parent="." unique_id=946365415 node_paths=PackedStringArray("gridManager", "gameUI", "ySortRoot") instance=ExtResource("3_jw32o")]
+gridManager = NodePath("../GridManager")
+gameUI = NodePath("../GameUI")
+ySortRoot = NodePath("../YSortRoot")
+buildingGhostScene = ExtResource("8_50glp")
 
 [node name="GridManager" parent="." unique_id=1977598800 node_paths=PackedStringArray("highlightTilemapLayer", "baseTerrainTilemapLayer") instance=ExtResource("2_rgh2o")]
 highlightTilemapLayer = NodePath("../HighlightTileMapLayer")
@@ -25,11 +29,8 @@ baseTerrainTilemapLayer = NodePath("../YSortRoot/BaseTerrainTileMapLayer")
 [node name="GameUI" parent="." unique_id=1336956338 node_paths=PackedStringArray("buildingManager") instance=ExtResource("6_v1gob")]
 buildingManager = NodePath("../BuildingManager")
 
-[node name="BuildingManager" parent="." unique_id=946365415 node_paths=PackedStringArray("gridManager", "gameUI", "ySortRoot") instance=ExtResource("3_jw32o")]
-gridManager = NodePath("../GridManager")
-gameUI = NodePath("../GameUI")
-ySortRoot = NodePath("../YSortRoot")
-buildingGhostScene = ExtResource("8_50glp")
+[node name="GameCamera" parent="." unique_id=1938217633 instance=ExtResource("2_xerb2")]
+zoom = Vector2(0.95, 0.95)
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=678565419]
 y_sort_enabled = true

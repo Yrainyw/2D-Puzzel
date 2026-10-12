@@ -12,10 +12,10 @@ public partial class GridManager : Node
 {
 	private const string IS_BUILDABLE = "is_buildable";
 	private const string IS_WOOD = "is_wood";
-	private const string IS_IGNORE = "is_ignored";
+	private const string IS_IGNORED = "is_ignored";
 
 	[Signal]
-	public delegate void ResourceTileUpdatedEventHandler(int collectedTiles);
+	public delegate void ResourceTilesUpdatedEventHandler(int collectedTiles);
 
 	[Signal]
 	public delegate void GridStateUpdatedEventHandler();
@@ -27,15 +27,15 @@ public partial class GridManager : Node
 	[Export] private TileMapLayer highlightTilemapLayer;
 	[Export] private TileMapLayer baseTerrainTilemapLayer;
 
-	private List<TileMapLayer> allTilemapLayers;
-	private Dictionary<TileMapLayer, ElevationLayer> tilemapToElevationLayer = new();
+	private List<TileMapLayer> allTilemapLayers = new();
+	private Dictionary<TileMapLayer, ElevationLayer> tileMapLayerToElevationLayer = new();
 
 	public override void _Ready()
 	{
 		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingPlaced, Callable.From<BuildingComponent>(OnBuildingPlaced));
 		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingDestroyed, Callable.From<BuildingComponent>(OnBuildingDestroyed));
 		allTilemapLayers = GetAllTilemapLayers(baseTerrainTilemapLayer);
-		MapTilemapLayersToElevationLayers();	
+		MapTileMapLayersToElevationLayers();	
 	}
 
 	public (TileMapLayer, bool) GetTileCustomData (Vector2I tilePosition, string dataName)
@@ -44,7 +44,7 @@ public partial class GridManager : Node
 		{
 			var customData = layer.GetCellTileData(tilePosition);
 
-			if (customData == null || (bool)customData.GetCustomData(IS_IGNORE)) continue;
+			if (customData == null || (bool)customData.GetCustomData(IS_IGNORED)) continue;
 			return (layer, (bool)customData.GetCustomData(dataName));
 		}
 		return (null, false);
@@ -63,12 +63,12 @@ public partial class GridManager : Node
 
 		(TileMapLayer firstTileMapLayer, _) = GetTileCustomData(tiles[0], IS_BUILDABLE);
 
-		var targetElevationLayer = tilemapToElevationLayer[firstTileMapLayer];
+		var targetElevationLayer = tileMapLayerToElevationLayer[firstTileMapLayer];
 
 		return tiles.All((tilePosition) => {
 			(TileMapLayer tileMapLayer, bool isBuildable) = GetTileCustomData(tilePosition, IS_BUILDABLE);
 
-			var elevationLayer = tilemapToElevationLayer[tileMapLayer];
+			var elevationLayer = tileMapLayerToElevationLayer[tileMapLayer];
 			return isBuildable && validBuildableTiles.Contains(tilePosition) && elevationLayer == targetElevationLayer;
 		});
 	}
@@ -144,7 +144,7 @@ public partial class GridManager : Node
 		return result;
 	}
 
-	private void MapTilemapLayersToElevationLayers()
+	private void MapTileMapLayersToElevationLayers()
 	{
 		foreach(var layer in allTilemapLayers)
 		{
@@ -158,7 +158,7 @@ public partial class GridManager : Node
 				startNode = parent;
 			} while (elevationLayer == null && startNode != null);
 
-		tilemapToElevationLayer[layer] = elevationLayer;
+		tileMapLayerToElevationLayer[layer] = elevationLayer;
 		}
 	}
 
@@ -167,8 +167,8 @@ public partial class GridManager : Node
 		occupiedTiles.UnionWith(buildingComponent.GetOccupiedCellPositions());
 		
 		var rootCell = buildingComponent.GetGridCellPosition();
-		var tileArea = new Rect2I(rootCell, buildingComponent.buildingResource.Dimensions);
-		var validTiles = GetValidTilesInRadius(tileArea, buildingComponent.buildingResource.BuildableRadius);
+		var tileArea = new Rect2I(rootCell, buildingComponent.BuildingResource.Dimensions);
+		var validTiles = GetValidTilesInRadius(tileArea, buildingComponent.BuildingResource.BuildableRadius);
 
 		validBuildableTiles.UnionWith(validTiles);
 		validBuildableTiles.ExceptWith(occupiedTiles);
@@ -178,15 +178,15 @@ public partial class GridManager : Node
 	private void UpdateCollectedResourceTiles(BuildingComponent buildingComponent)
 	{
 		var rootCell = buildingComponent.GetGridCellPosition();
-		var tileArea = new Rect2I(rootCell, buildingComponent.buildingResource.Dimensions);
-		var resourceTiles = GetResourceTilesInRadius(tileArea, buildingComponent.buildingResource.ResourceRadius);
+		var tileArea = new Rect2I(rootCell, buildingComponent.BuildingResource.Dimensions);
+		var resourceTiles = GetResourceTilesInRadius(tileArea, buildingComponent.BuildingResource.ResourceRadius);
 		var oldResourceTilesCount = collectedResourceTiles.Count;
 
 		collectedResourceTiles.UnionWith(resourceTiles);
 
 		if (oldResourceTilesCount != collectedResourceTiles.Count)
 		{
-			EmitSignal(SignalName.ResourceTileUpdated, collectedResourceTiles.Count);
+			EmitSignal(SignalName.ResourceTilesUpdated, collectedResourceTiles.Count);
 		}
 
 		EmitSignal(SignalName.GridStateUpdated);
@@ -207,7 +207,7 @@ public partial class GridManager : Node
 			UpdateCollectedResourceTiles(buildingComponent);
 		}
 
-		EmitSignal(SignalName.ResourceTileUpdated, collectedResourceTiles.Count);
+		EmitSignal(SignalName.ResourceTilesUpdated, collectedResourceTiles.Count);
 		EmitSignal(SignalName.GridStateUpdated);
 	}
 

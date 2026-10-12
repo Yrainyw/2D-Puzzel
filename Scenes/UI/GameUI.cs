@@ -7,12 +7,12 @@ namespace Game.UI;
 public partial class GameUI : CanvasLayer
 {
 	[Signal]
-	public delegate void BuildingResourceSelectedEventHandler(buildingResource buildingResource);
+	public delegate void BuildingResourceSelectedEventHandler(BuildingResource buildingResource);
 
 	private VBoxContainer BuildingSectionContainer;
 
 	[Export] private BuildingManager	buildingManager;
-	[Export] private buildingResource[] buildingResources;
+	[Export] private BuildingResource[] buildingResources;
 	[Export] private PackedScene buildingSectionScene;
 	
 	private Button placeTowerButton;

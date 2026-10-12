@@ -1,9 +1,9 @@
-using Game.UI;
-using Godot;
-using Game.Resources.Building;
+using System.Linq;
 using Game.Building;
 using Game.Component;
-using System.Linq;
+using Game.Resources.Building;
+using Game.UI;
+using Godot;
 
 namespace Game.Manager;
 
@@ -30,7 +30,7 @@ public partial class BuildingManager : Node
 
 	private int currentResourceCount;
 	private int currentlyUsedResourceCount;
-	private buildingResource toPlaceBuildingResource;
+	private BuildingResource toPlaceBuildingResource;
 	private Rect2I hoveredGridArea = new(Vector2I.Zero, Vector2I.One);
 	private BuildingGhost buildingGhost;
 	private State currentState;
@@ -38,10 +38,9 @@ public partial class BuildingManager : Node
 
 	public override void _Ready()
 	{
-		gridManager.ResourceTileUpdated += OnResourceTileUpdated;
+		gridManager.ResourceTilesUpdated += OnResourceTilesUpdated;
 		gameUI.BuildingResourceSelected += OnBuildingResourceSelected;
 		Callable.From(() => EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount)).CallDeferred();
-		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
 	}
 
 	public override void _UnhandledInput(InputEvent evt)
@@ -105,7 +104,7 @@ public partial class BuildingManager : Node
 			buildingGhost.SetValid();
 		}
 		else {
-			buildingGhost.SetInValid();
+			buildingGhost.SetInvalid();
 		}
 	}
 
@@ -125,12 +124,12 @@ public partial class BuildingManager : Node
 		var rootCell = hoveredGridArea.Position;
 		var buildingComponent = GetTree().GetNodesInGroup(nameof(BuildingComponent)).Cast<BuildingComponent>()
 			.FirstOrDefault((buildingComponent) => {
-				return buildingComponent.buildingResource.IsDeletable && buildingComponent.IsTileInBuildingArea(rootCell);
+				return buildingComponent.BuildingResource.IsDeletable && buildingComponent.IsTileInBuildingArea(rootCell);
 		});
 
 		if (buildingComponent == null) return;
 
-		currentlyUsedResourceCount -= buildingComponent.buildingResource.ResourceCost;
+		currentlyUsedResourceCount -= buildingComponent.BuildingResource.ResourceCost;
 		buildingComponent.Destroy();
 		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
 	}
@@ -190,13 +189,13 @@ public partial class BuildingManager : Node
 		}
 	}
 
-	private void OnResourceTileUpdated(int resourceCount)
+	private void OnResourceTilesUpdated(int resourceCount)
 	{
 		currentResourceCount = resourceCount;
 		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
 	}
 
-	private void OnBuildingResourceSelected(buildingResource buildingResource)
+	private void OnBuildingResourceSelected(BuildingResource buildingResource)
 	{
 		ChangeState(State.PlacingBuilding);
 		hoveredGridArea.Size = buildingResource.Dimensions;

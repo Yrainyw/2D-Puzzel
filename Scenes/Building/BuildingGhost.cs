@@ -4,7 +4,7 @@ namespace Game.Building;
 
 public partial class BuildingGhost : Node2D
 {
-	public void SetInValid()
+	public void SetInvalid()
 	{
 		Modulate = Colors.Red;
 	}

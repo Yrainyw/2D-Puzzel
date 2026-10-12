@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5cocuti3m3r1"]
 
-[ext_resource type="PackedScene" uid="uid://dc1f25ev6fa2h" path="res://Scenes/Component/buildingComponent.tscn" id="1_powwv"]
+[ext_resource type="PackedScene" uid="uid://dc1f25ev6fa2h" path="res://Scenes/Component/BuildingComponent.tscn" id="1_powwv"]
 [ext_resource type="PackedScene" uid="uid://d1hfrjfg2yn4x" path="res://Scenes/Building/Sprite/TowerSprite2D.tscn" id="2_powwv"]
 
 [node name="Tower" type="Node2D" unique_id=20794382]
