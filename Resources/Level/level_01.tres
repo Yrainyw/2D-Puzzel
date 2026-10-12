@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelDefinitionResources" format=3 uid="uid://chsc5nek0peg1"]
+
+[ext_resource type="Script" uid="uid://xes342l2vlgg" path="res://Resources/Level/LevelDefinitionResources.cs" id="1_otd2l"]
+
+[resource]
+script = ExtResource("1_otd2l")
+Id = "when_cucumbers_fall"
+StartingResourceCount = 2
+LevelScenePath = "uid://ijirc1ppf706"
+metadata/_custom_type_script = "uid://xes342l2vlgg"

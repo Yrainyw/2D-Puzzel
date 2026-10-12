@@ -30,6 +30,7 @@ baseTerrainTilemapLayer = NodePath("../YSortRoot/BaseTerrainTileMapLayer")
 buildingManager = NodePath("../BuildingManager")
 
 [node name="GameCamera" parent="." unique_id=1938217633 instance=ExtResource("2_xerb2")]
+visible = false
 zoom = Vector2(0.95, 0.95)
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=678565419]

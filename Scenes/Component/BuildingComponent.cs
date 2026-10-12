@@ -8,9 +8,8 @@ namespace Game.Component;
 
 public partial class BuildingComponent : Node2D
 {
-	[Export(PropertyHint.File, "*.tres")]
-
-	private string buildingResourcePath;
+	[Export(PropertyHint.File, "*.tres")] private string buildingResourcePath;
+	
 	public BuildingResource BuildingResource { get; private set; }
 	private HashSet<Vector2I> occupiedTiles = new();
 
