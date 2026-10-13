@@ -160,3 +160,10 @@ position = Vector2(65, 64)
 texture = ExtResource("5_1tk8b")
 centered = false
 offset = Vector2(-34, -30)
+
+[node name="SpriteRoot" type="Node2D" parent="." unique_id=2091700764]
+top_level = true
+y_sort_enabled = true
+
+[node name="UpDownRoot" type="Node2D" parent="SpriteRoot" unique_id=652734516]
+unique_name_in_owner = true
