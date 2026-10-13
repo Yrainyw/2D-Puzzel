@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c3e0x0fgkf1gv"]
 
+[ext_resource type="Script" uid="uid://bwhky1c54kwn8" path="res://Scenes/UI/LevelSelectSection.cs" id="1_0n7ri"]
 [ext_resource type="Texture2D" uid="uid://bmkwsmclqk5ep" path="res://Assets/wood_icon.png" id="1_2em4u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhiyq"]
@@ -8,6 +9,7 @@ region = Rect2(39, 73, 32, 27)
 
 [node name="LevelSelectSection" type="PanelContainer" unique_id=54554615]
 theme_type_variation = &"PanelContainerAlternate"
+script = ExtResource("1_0n7ri")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1402136707]
 layout_mode = 2
@@ -23,7 +25,8 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=291866326]
+[node name="LevelNumberLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=291866326]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Level 1"
@@ -38,11 +41,13 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_lhiyq")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=905404428]
+[node name="ResourceCountLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=905404428]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "4"
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=126413492]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Select"
