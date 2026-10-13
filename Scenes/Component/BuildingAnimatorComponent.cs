@@ -7,9 +7,12 @@ public partial class BuildingAnimatorComponent : Node2D
 {
 	[Signal]
 	public delegate void DestroyAnimationFinishedEventHandler();
+
+	[Export] private Texture2D maskTexture;
 	
 	private Tween activeTween;
 	private Node2D animationRootNode;
+	private Sprite2D maskNode;
 	
 	public override void _Ready()
 	{
@@ -41,6 +44,9 @@ public partial class BuildingAnimatorComponent : Node2D
 			activeTween.Kill();
 		}
 
+		maskNode.ClipChildren = ClipChildrenMode.Only;
+		maskNode.Texture = maskTexture;
+
 		activeTween = CreateTween();
 		activeTween.TweenProperty(animationRootNode, "rotation_degrees", -5, .1);
 		activeTween.TweenProperty(animationRootNode, "rotation_degrees", 5, .1);
@@ -66,8 +72,16 @@ public partial class BuildingAnimatorComponent : Node2D
 
 		RemoveChild(spriteNode);
 		Position = new Vector2(spriteNode.Position.X, spriteNode.Position.Y);
+
+		maskNode = new Sprite2D
+		{
+			Centered = false,
+			Offset = new Vector2(-160, -256)
+		};
+
+		AddChild(maskNode);
 		animationRootNode = new Node2D();
-		AddChild(animationRootNode);
+		maskNode.AddChild(animationRootNode);
 		animationRootNode.AddChild(spriteNode);
 		spriteNode.Position = new Vector2(0, 0);
 	}
