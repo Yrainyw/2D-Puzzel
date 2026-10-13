@@ -1,8 +1,48 @@
 [gd_scene format=3 uid="uid://cbpi5dhsumq4i"]
 
 [ext_resource type="Script" uid="uid://c3fcy5novxmln" path="res://Scenes/Building/BuildingGhost.cs" id="1_nkpqd"]
+[ext_resource type="Texture2D" uid="uid://dxghgu7vh07ae" path="res://Assets/UI/region_top_left.png" id="2_bexei"]
+[ext_resource type="Texture2D" uid="uid://ciqmdh4wv3x80" path="res://Assets/UI/region_top_right.png" id="3_tsg22"]
+[ext_resource type="Texture2D" uid="uid://bgo23atd32k4o" path="res://Assets/UI/region_bottom_left.png" id="4_rvsco"]
+[ext_resource type="Texture2D" uid="uid://b5v3ir0s8i2jq" path="res://Assets/UI/region_bottom_right.png" id="5_1tk8b"]
 
 [node name="BuildingGhost" type="Node2D" unique_id=1688694891]
 y_sort_enabled = true
 position = Vector2(-1, 0)
 script = ExtResource("1_nkpqd")
+
+[node name="TopLeft" type="Node2D" parent="." unique_id=815208633]
+z_index = 1
+position = Vector2(1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopLeft" unique_id=1272954207]
+texture = ExtResource("2_bexei")
+centered = false
+offset = Vector2(-31, -33)
+
+[node name="TopRight" type="Node2D" parent="." unique_id=722464971]
+z_index = 1
+position = Vector2(65, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopRight" unique_id=301468187]
+texture = ExtResource("3_tsg22")
+centered = false
+offset = Vector2(-34, -33)
+
+[node name="BottomLeft" type="Node2D" parent="." unique_id=2033791413]
+z_index = 1
+position = Vector2(1, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomLeft" unique_id=893594457]
+texture = ExtResource("4_rvsco")
+centered = false
+offset = Vector2(-31, -30)
+
+[node name="BottomRight" type="Node2D" parent="." unique_id=1333501475]
+z_index = 1
+position = Vector2(65, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomRight" unique_id=1969748793]
+texture = ExtResource("5_1tk8b")
+centered = false
+offset = Vector2(-34, -30)

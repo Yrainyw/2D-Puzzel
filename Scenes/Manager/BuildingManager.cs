@@ -209,6 +209,7 @@ public partial class BuildingManager : Node
 		var buildingSprite = buildingResource.SpriteScene.Instantiate<Sprite2D>();
 		
 		buildingGhost.AddChild(buildingSprite);
+		buildingGhost.SetDemensions(buildingResource.Dimensions);
 		toPlaceBuildingResource = buildingResource;
 		UpdateGridDisplay();
 	}
