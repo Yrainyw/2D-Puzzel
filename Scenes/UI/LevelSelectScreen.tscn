@@ -9,6 +9,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 script = ExtResource("1_lhiyq")
 LevelSelectSectionScene = ExtResource("1_vxida")
 
@@ -30,3 +34,9 @@ layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 4
+
+[node name="BackButton" type="Button" parent="." unique_id=314285363]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Back"
