@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c4fh2hyyxwso0"]
+
+[ext_resource type="PackedScene" uid="uid://dc1f25ev6fa2h" path="res://Scenes/Component/BuildingComponent.tscn" id="1_rqj6u"]
+[ext_resource type="PackedScene" uid="uid://chvukmv1jy4a6" path="res://Scenes/Component/BuildingAnimatorComponent.tscn" id="2_rx6vd"]
+[ext_resource type="Texture2D" uid="uid://dc4pgsv3x28xj" path="res://Assets/Buildings/wood_tower_red.png" id="3_rx6vd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdml1"]
+atlas = ExtResource("3_rx6vd")
+region = Rect2(0, 0, 256, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtmfl"]
+atlas = ExtResource("3_rx6vd")
+region = Rect2(256, 0, 256, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6run"]
+atlas = ExtResource("3_rx6vd")
+region = Rect2(512, 0, 256, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24n6y"]
+atlas = ExtResource("3_rx6vd")
+region = Rect2(768, 0, 256, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rx6vd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdml1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtmfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6run")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24n6y")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="GoblinCamp" type="Node2D" unique_id=588369109]
+y_sort_enabled = true
+
+[node name="BuildingComponent" parent="." unique_id=210722747 node_paths=PackedStringArray("buildingAnimatorComponent") instance=ExtResource("1_rqj6u")]
+buildingResourcePath = "uid://caes3cb5pbina"
+buildingAnimatorComponent = NodePath("../BuildingAnimatorComponent")
+
+[node name="BuildingAnimatorComponent" parent="." unique_id=1600501637 instance=ExtResource("2_rx6vd")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=454981208]
+position = Vector2(64, 96)
+sprite_frames = SubResource("SpriteFrames_rx6vd")
+autoplay = "default"
+frame_progress = 0.99809915
+centered = false
+offset = Vector2(-128, -160)
