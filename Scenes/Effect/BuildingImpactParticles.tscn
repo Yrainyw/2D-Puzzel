@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://c1s40mjkwet8k"]
+
+[ext_resource type="Texture2D" uid="uid://cij3mg6gug0h1" path="res://Assets/Effects/particle.png" id="1_7guyn"]
+
+[sub_resource type="Animation" id="Animation_7guyn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_uokdu"]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3nfy"]
+_data = {
+&"RESET": SubResource("Animation_7guyn"),
+&"default": SubResource("Animation_uokdu")
+}
+
+[sub_resource type="Curve" id="Curve_7guyn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12587413, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7guyn"]
+curve = SubResource("Curve_7guyn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uokdu"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+spread = 15.0
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angular_velocity_min = -360.0
+angular_velocity_max = 359.99997
+gravity = Vector3(0, -500, 0)
+damping_min = 300.0
+damping_max = 600.0
+scale_curve = SubResource("CurveTexture_7guyn")
+
+[node name="BuildingImpactParticles" type="Node2D" unique_id=1001066093]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=640894928]
+libraries/ = SubResource("AnimationLibrary_p3nfy")
+autoplay = &"default"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=529182504]
+position = Vector2(0, -24)
+emitting = false
+amount = 15
+texture = ExtResource("1_7guyn")
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 0
+interpolate = false
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_uokdu")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1878755469]
+position = Vector2(0, -24)
+rotation = -3.1415927
+emitting = false
+amount = 15
+texture = ExtResource("1_7guyn")
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 0
+interpolate = false
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_uokdu")
