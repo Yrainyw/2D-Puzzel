@@ -38,6 +38,8 @@ public partial class GridManager : Node
 	{
 		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingPlaced, Callable.From<BuildingComponent>(OnBuildingPlaced));
 		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingDestroyed, Callable.From<BuildingComponent>(OnBuildingDestroyed));
+		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingEnabled, Callable.From<BuildingComponent>(OnBuildingEnabled));
+		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingDisabled, Callable.From<BuildingComponent>(OnBuildingDisabled));
 		allTilemapLayers = GetAllTilemapLayers(baseTerrainTilemapLayer);
 		MapTileMapLayersToElevationLayers();	
 	}
@@ -212,6 +214,8 @@ public partial class GridManager : Node
 	{
 		occupiedTiles.UnionWith(buildingComponent.GetOccupiedCellPositions());
 
+		if (buildingComponent.IsDisabled) return;
+
 		var tileArea = buildingComponent.GetTileArea();
 
 		if (buildingComponent.BuildingResource.IsDangerBuilding()){
@@ -284,6 +288,7 @@ public partial class GridManager : Node
 			UpdateBuildingComponentGridState(buildingComponent);
 		}
 
+		CheckGoblinCampDestruction();
 		EmitSignal(SignalName.ResourceTilesUpdated, collectedResourceTiles.Count);
 		EmitSignal(SignalName.GridStateUpdated);
 	}
@@ -302,7 +307,6 @@ public partial class GridManager : Node
 
 	public void CheckGoblinCampDestruction()
 	{
-		var isCampDestroy = false;
 		var dangerBuildings = BuildingComponent.GetDangerBuildingComponents(this);
 
 		foreach (var building in dangerBuildings)
@@ -312,14 +316,12 @@ public partial class GridManager : Node
 
 			if (IsInsideAttackTile)
 			{
-				isCampDestroy = true;
-				building.Destroy();
+				building.Disable();
 			}
-		}
-
-		if (isCampDestroy)
-		{
-			RecalculateGoblinOccupiedTiles();
+			else
+			{
+				building.Enable();
+			}
 		}
 	}
 
@@ -386,6 +388,16 @@ public partial class GridManager : Node
 	}
 
 	private void OnBuildingDestroyed(BuildingComponent buildingComponent)
+	{
+		RecalculateGrid();
+	}
+
+	private void OnBuildingEnabled(BuildingComponent buildingComponent)
+	{
+		UpdateBuildingComponentGridState(buildingComponent);
+	}
+
+	private void OnBuildingDisabled(BuildingComponent buildingComponent)
 	{
 		RecalculateGrid();
 	}
