@@ -49,7 +49,7 @@ buildingAnimatorComponent = NodePath("../BuildingAnimatorComponent")
 
 [node name="BuildingAnimatorComponent" parent="." unique_id=1600501637 instance=ExtResource("2_rx6vd")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=454981208]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BuildingAnimatorComponent" unique_id=454981208]
 position = Vector2(64, 96)
 sprite_frames = SubResource("SpriteFrames_rx6vd")
 autoplay = "default"

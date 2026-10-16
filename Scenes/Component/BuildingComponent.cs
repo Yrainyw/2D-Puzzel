@@ -3,7 +3,6 @@ using Game.Autoload;
 using Game.Resources.Building;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
 
 namespace Game.Component;
 
@@ -20,6 +19,11 @@ public partial class BuildingComponent : Node2D
 	public static IEnumerable<BuildingComponent> GetValidBuildingComponents(Node node)
 	{
 		return node.GetTree().GetNodesInGroup(nameof(BuildingComponent)).Cast<BuildingComponent>().Where((buildingComponent) => !buildingComponent.IsDestroying);
+	}
+
+	public static IEnumerable<BuildingComponent> GetDangerBuildingComponents(Node node)
+	{
+		return GetValidBuildingComponents(node).Where((buildingComponent) => buildingComponent.BuildingResource.IsDangerBuilding());
 	}
 
 	public override void _Ready()
@@ -49,6 +53,13 @@ public partial class BuildingComponent : Node2D
 	public HashSet<Vector2I> GetOccupiedCellPositions()
 	{
 		return occupiedTiles.ToHashSet();
+	}
+
+	public Rect2I GetTileArea()
+	{
+		var rootCell = GetGridCellPosition();
+		var tileArea = new Rect2I(rootCell, BuildingResource.Dimensions);
+		return tileArea;
 	}
 
 	public bool IsTileInBuildingArea(Vector2I tilePosition)

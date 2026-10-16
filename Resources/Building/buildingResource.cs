@@ -31,4 +31,9 @@ public partial class BuildingResource : Resource
 	{
 		return AttackRadius > 0;
 	}
+
+	public bool IsDangerBuilding()
+	{
+		return DangerRadius > 0;
+	}
 }
