@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://c8ycxmvr0s1b4" path="res://Scenes/Level/util/ElevationLayer.tscn" id="2_3sq6c"]
 [ext_resource type="Resource" uid="uid://dcj4xg0thofs2" path="res://Resources/Level/level_03.tres" id="2_jnmh1"]
 [ext_resource type="TileSet" uid="uid://ct4qxijf8jrjh" path="res://Resources/tiles.tres" id="3_ex3qd"]
-[ext_resource type="PackedScene" uid="uid://c4fh2hyyxwso0" path="res://Scenes/Building/GoblinCamp.tscn" id="5_cgcbr"]
 
 [node name="Level3" unique_id=607546042 instance=ExtResource("1_7viy3")]
 levelDefinitionResource = ExtResource("2_jnmh1")
@@ -48,8 +47,5 @@ position = Vector2(1024, -64)
 
 [node name="GoldMine" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="2" unique_id=805685447]
 position = Vector2(256, 832)
-
-[node name="GoblinCamp" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="4" unique_id=588369109 instance=ExtResource("5_cgcbr")]
-position = Vector2(-128, 128)
 
 [editable path="YSortRoot/BaseTerrainTileMapLayer/ElevationLayer"]

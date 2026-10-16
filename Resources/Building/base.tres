@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_o5lvn")
 DisplayName = "Base"
+IsBase = true
 IsDeletable = false
 Dimensions = Vector2i(5, 2)
 BuildableRadius = 6

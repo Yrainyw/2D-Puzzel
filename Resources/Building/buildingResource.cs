@@ -9,6 +9,8 @@ public partial class BuildingResource : Resource
 
 	[Export] public string Description { get; private set; }
 
+	[Export] public bool IsBase { get; private set; }
+
 	[Export] public bool IsDeletable { get; private set; } = true;
 
 	[Export] public Vector2I Dimensions { get; private set; } = Vector2I.One;

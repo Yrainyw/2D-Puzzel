@@ -160,6 +160,8 @@ public partial class BuildingManager : Node
 
 		if (buildingComponent == null) return;
 
+		if (!gridManager.CanDestroyBuilding(buildingComponent)) return;
+
 		currentlyUsedResourceCount -= buildingComponent.BuildingResource.ResourceCost;
 		buildingComponent.Destroy();
 		EmitSignal(SignalName.AvailableResourceCountChanged, AvailableResourceCount);
