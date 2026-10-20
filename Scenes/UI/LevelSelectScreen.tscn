@@ -16,24 +16,59 @@ theme_override_constants/margin_bottom = 16
 script = ExtResource("1_lhiyq")
 LevelSelectSectionScene = ExtResource("1_vxida")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1876085709]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=515811956]
+layout_mode = 2
+
+[node name="PreviousPageButton" type="Button" parent="HBoxContainer" unique_id=688244328]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "Previous Page"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1876085709]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1620565058]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer" unique_id=1620565058]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer" unique_id=1510291071]
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/PanelContainer/MarginContainer" unique_id=1510291071]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
-columns = 4
+columns = 3
+
+[node name="LevelSelectSection" parent="HBoxContainer/PanelContainer/MarginContainer/GridContainer" unique_id=54554615 instance=ExtResource("1_vxida")]
+layout_mode = 2
+
+[node name="LevelSelectSection2" parent="HBoxContainer/PanelContainer/MarginContainer/GridContainer" unique_id=1188251198 instance=ExtResource("1_vxida")]
+layout_mode = 2
+
+[node name="LevelSelectSection3" parent="HBoxContainer/PanelContainer/MarginContainer/GridContainer" unique_id=444837617 instance=ExtResource("1_vxida")]
+layout_mode = 2
+
+[node name="LevelSelectSection4" parent="HBoxContainer/PanelContainer/MarginContainer/GridContainer" unique_id=1335118827 instance=ExtResource("1_vxida")]
+layout_mode = 2
+
+[node name="LevelSelectSection5" parent="HBoxContainer/PanelContainer/MarginContainer/GridContainer" unique_id=1098966383 instance=ExtResource("1_vxida")]
+layout_mode = 2
+
+[node name="LevelSelectSection6" parent="HBoxContainer/PanelContainer/MarginContainer/GridContainer" unique_id=1881385559 instance=ExtResource("1_vxida")]
+layout_mode = 2
+
+[node name="NextPageButton" type="Button" parent="HBoxContainer" unique_id=336712358]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+text = "Next Page"
 
 [node name="BackButton" type="Button" parent="." unique_id=314285363]
 layout_mode = 2
