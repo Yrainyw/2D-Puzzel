@@ -12,6 +12,8 @@ config_version=5
 
 config/name="2D Puzzel"
 run/main_scene="uid://b5hhy4jc76a01"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="2DPuzzel"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
