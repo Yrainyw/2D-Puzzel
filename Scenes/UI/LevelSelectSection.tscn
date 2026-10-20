@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwhky1c54kwn8" path="res://Scenes/UI/LevelSelectSection.cs" id="1_0n7ri"]
 [ext_resource type="Texture2D" uid="uid://bmkwsmclqk5ep" path="res://Assets/wood_icon.png" id="1_2em4u"]
+[ext_resource type="Texture2D" uid="uid://b82bgkkc6lwte" path="res://Assets/UI/check.png" id="3_gjowe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhiyq"]
 atlas = ExtResource("1_2em4u")
@@ -34,7 +35,6 @@ text = "Level 1"
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=623043486]
 layout_mode = 2
 theme_override_constants/separation = 8
-alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=230755162]
 layout_mode = 2
@@ -46,6 +46,13 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "4"
+
+[node name="CompletedIndicator" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=147560745]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("3_gjowe")
+stretch_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=126413492]
 unique_name_in_owner = true
