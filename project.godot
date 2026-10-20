@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 GameEvents="*uid://cdrt0ncqu61xa"
 LevelManager="*uid://d0rjphl3h76hn"
 SaveManager="*uid://0gva1rde247g"
+SettingsManager="*uid://ps8xmnr5rd03"
 
 [display]
 
@@ -29,7 +30,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/window_width_override=1920
 window/size/window_height_override=1080
-window/stretch/mode="canvas_items"
+window/stretch/scale=1.2
 
 [dotnet]
 
