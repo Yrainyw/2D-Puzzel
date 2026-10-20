@@ -34,6 +34,8 @@ public partial class GridManager : Node
 	private List<TileMapLayer> allTilemapLayers = new();
 	private Dictionary<TileMapLayer, ElevationLayer> tileMapLayerToElevationLayer = new();
 	private Dictionary<BuildingComponent, HashSet<Vector2I>> buildingToBuildableTiles = new();
+	private Dictionary<BuildingComponent, HashSet<Vector2I>> dangerBuildingToTiles = new();
+	private Dictionary<BuildingComponent, HashSet<Vector2I>> attackBuildingToTiles = new();
 
 	public override void _Ready()
 	{
@@ -173,7 +175,48 @@ public partial class GridManager : Node
 		{
 			return !WillBuildingDestructionCreateOrphanBuildings(toDestroyBuildingComponent) && IsBuildingNetworkConnected(toDestroyBuildingComponent);
 		}
+		else if (toDestroyBuildingComponent.BuildingResource.IsAttackBuilding())
+		{
+			return CanDestroyBarracks(toDestroyBuildingComponent);
+		}
 		return true;
+	}
+
+	private bool CanDestroyBarracks(BuildingComponent toDestroyBuildingComponent)
+	{	
+		var disableDangerBuildings = BuildingComponent.GetDangerBuildingComponents(this)
+			.Where((buildingComponent) => buildingComponent.GetTileArea().ToTiles().Any((tilePosition) =>
+			{
+				return attackBuildingToTiles[toDestroyBuildingComponent].Contains(tilePosition);
+			}));
+
+		if (!disableDangerBuildings.Any()) return true;
+
+		var allDangerBuildingsStillDisabled = disableDangerBuildings.All((dangerBuilding) =>
+		{
+			return dangerBuilding.GetTileArea().ToTiles().Any((tilePosition) =>
+			{
+				return attackBuildingToTiles.Keys.Where((attackBuilding) => attackBuilding != toDestroyBuildingComponent)
+					.Any((attackBuilding) => attackBuildingToTiles[attackBuilding].Contains(tilePosition));
+			});
+		});
+
+		if (allDangerBuildingsStillDisabled) return true;
+
+		var nonDangerBuildings = BuildingComponent.GetNonDangerBuildingComponents(this).Where((nonDangerBuilding) =>
+		{
+			return nonDangerBuilding != toDestroyBuildingComponent;
+		});
+		var anyDangerBuildingContainsPlayerBuilding = disableDangerBuildings.Any((dangerBuilding) =>
+		{
+			var dangerTiles = dangerBuildingToTiles[dangerBuilding];
+			return nonDangerBuildings.Any((nonDangerBuilding) =>
+			{
+				return nonDangerBuilding.GetTileArea().ToTiles().Any((tilePosition) => dangerTiles.Contains(tilePosition));
+			});
+		});
+
+		return !anyDangerBuildingContainsPlayerBuilding;
 	}
 
 	private bool WillBuildingDestructionCreateOrphanBuildings(BuildingComponent toDestroyBuildingComponent)
@@ -293,15 +336,18 @@ public partial class GridManager : Node
 	{
 		occupiedTiles.UnionWith(buildingComponent.GetOccupiedCellPositions());
 
-		if (buildingComponent.IsDisabled) return;
-
-		var tileArea = buildingComponent.GetTileArea();
-
-		if (buildingComponent.BuildingResource.IsDangerBuilding()){
+		if (buildingComponent.BuildingResource.IsDangerBuilding())
+		{
+			var tileArea = buildingComponent.GetTileArea();
 			var tilesInRadius = GetValidTilesInRadius(tileArea, buildingComponent.BuildingResource.DangerRadius).ToHashSet();
 
-			tilesInRadius.ExceptWith(occupiedTiles);
-			goblinOccupiedTiles.UnionWith(tilesInRadius);
+			dangerBuildingToTiles[buildingComponent] = tilesInRadius.ToHashSet();
+
+			if (!buildingComponent.IsDisabled)
+			{
+				tilesInRadius.ExceptWith(occupiedTiles);
+				goblinOccupiedTiles.UnionWith(tilesInRadius);
+			}
 		}
 	}
 
@@ -355,6 +401,7 @@ public partial class GridManager : Node
 		var tileArea = buildingComponent.GetTileArea();
 		var newAttackTiles = GetTilesInRadius(tileArea, buildingComponent.BuildingResource.AttackRadius, (_) => true).ToHashSet(); 
 
+		attackBuildingToTiles[buildingComponent] = newAttackTiles;
 		attackTiles.UnionWith(newAttackTiles);
 	}
 
@@ -368,6 +415,9 @@ public partial class GridManager : Node
 		goblinOccupiedTiles.Clear();
 		attackTiles.Clear();
 		buildingToBuildableTiles.Clear();
+		dangerBuildingToTiles.Clear();
+		attackBuildingToTiles.Clear();
+
 
 		var buildingComponents = BuildingComponent.GetValidBuildingComponents(this);
 
