@@ -41,6 +41,7 @@ public partial class BuildingAnimatorComponent : Node2D
 
 			Owner.GetParent().AddChild(impactParticles);
 			impactParticles.GlobalPosition = GlobalPosition;
+			GameCamera.Shake();
 		}));
 		
 		activeTween.TweenProperty(animationRootNode, "position", Vector2.Up * 16, .1).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
@@ -64,6 +65,7 @@ public partial class BuildingAnimatorComponent : Node2D
 
 		Owner.GetParent().AddChild(destroyParticles);
 		destroyParticles.GlobalPosition = GlobalPosition;
+		GameCamera.Shake();
 
 		activeTween = CreateTween();
 		activeTween.TweenProperty(animationRootNode, "rotation_degrees", -5, .1);
