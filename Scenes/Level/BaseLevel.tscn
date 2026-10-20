@@ -52,6 +52,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="HighlightTileMapLayer" type="TileMapLayer" parent="YSortRoot" unique_id=138346392]
-modulate = Color(1, 1, 1, 0.47058824)
+modulate = Color(1, 1, 1, 0.7058824)
 y_sort_enabled = true
 tile_set = ExtResource("2_idj7w")
