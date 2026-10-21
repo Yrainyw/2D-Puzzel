@@ -37,6 +37,8 @@ public partial class GridManager : Node
 	private Dictionary<BuildingComponent, HashSet<Vector2I>> dangerBuildingToTiles = new();
 	private Dictionary<BuildingComponent, HashSet<Vector2I>> attackBuildingToTiles = new();
 
+	private Vector2I goldMinePosition;
+
 	public override void _Ready()
 	{
 		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingPlaced, Callable.From<BuildingComponent>(OnBuildingPlaced));
@@ -45,6 +47,11 @@ public partial class GridManager : Node
 		GameEvents.Instance.Connect(GameEvents.SignalName.BuildingDisabled, Callable.From<BuildingComponent>(OnBuildingDisabled));
 		allTilemapLayers = GetAllTilemapLayers(baseTerrainTilemapLayer);
 		MapTileMapLayersToElevationLayers();	
+	}
+
+	public void SetGoldMinePosition(Vector2I position)
+	{
+		goldMinePosition = position;
 	}
 
 	public (TileMapLayer, bool) GetTileCustomData (Vector2I tilePosition, string dataName)
@@ -503,7 +510,7 @@ public partial class GridManager : Node
 	{
 		return GetTilesInRadius(tileArea,radius, (tilePosition) =>
 		{
-			return GetTileCustomData(tilePosition, IS_BUILDABLE).Item2;
+			return GetTileCustomData(tilePosition, IS_BUILDABLE).Item2 || tilePosition == goldMinePosition;
 		});
 	}
 
