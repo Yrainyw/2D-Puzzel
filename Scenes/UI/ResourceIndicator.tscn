@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://c4sjlvuh2ihrs"]
+
+[ext_resource type="Script" uid="uid://dqa1ctqu7es2q" path="res://Scenes/UI/ResourceIndicator.cs" id="1_rcth6"]
+[ext_resource type="Texture2D" uid="uid://y4f30iiimk0h" path="res://Assets/UI/wood_spawn.png" id="1_snmji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcth6"]
+atlas = ExtResource("1_snmji")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7pyc"]
+atlas = ExtResource("1_snmji")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nff42"]
+atlas = ExtResource("1_snmji")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvd8s"]
+atlas = ExtResource("1_snmji")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um2xq"]
+atlas = ExtResource("1_snmji")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdqo0"]
+atlas = ExtResource("1_snmji")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rdfe"]
+atlas = ExtResource("1_snmji")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15pk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcth6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7pyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nff42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvd8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_um2xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdqo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rdfe")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ResourceIndicator" type="Node2D" unique_id=319509607]
+script = ExtResource("1_rcth6")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=971862125]
+position = Vector2(32, 10)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=114969785]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_15pk6")
+autoplay = "default"
