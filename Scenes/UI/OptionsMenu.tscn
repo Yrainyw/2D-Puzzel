@@ -52,9 +52,11 @@ text = "Down"
 
 [node name="SFXLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXContainer/HBoxContainer/HBoxContainer" unique_id=1168007929]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 theme_type_variation = &"OptionLabel"
 text = "10"
+horizontal_alignment = 1
 
 [node name="SFXUpButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXContainer/HBoxContainer/HBoxContainer" unique_id=492581024]
 unique_name_in_owner = true
@@ -86,9 +88,11 @@ text = "Down"
 
 [node name="MusicLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicContainer/HBoxContainer/HBoxContainer" unique_id=646732172]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 theme_type_variation = &"OptionLabel"
 text = "10"
+horizontal_alignment = 1
 
 [node name="MusicUpButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicContainer/HBoxContainer/HBoxContainer" unique_id=174469879]
 unique_name_in_owner = true
