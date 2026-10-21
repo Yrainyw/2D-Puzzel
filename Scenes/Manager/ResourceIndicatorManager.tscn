@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dqo533wf3ruhe" path="res://Scenes/Manager/ResourceIndicatorManager.cs" id="1_6g878"]
 [ext_resource type="PackedScene" uid="uid://c4sjlvuh2ihrs" path="res://Scenes/UI/ResourceIndicator.tscn" id="2_7r0pp"]
+[ext_resource type="AudioStream" uid="uid://c7xcheuggw0uu" path="res://Assets/Audio/logs.wav" id="3_ssi2q"]
 
 [node name="ResourceIndicatorManager" type="Node" unique_id=1473754808]
 script = ExtResource("1_6g878")
 resourceIndicatorScene = ExtResource("2_7r0pp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=761213062]
+stream = ExtResource("3_ssi2q")
+bus = &"SFX"

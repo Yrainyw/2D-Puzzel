@@ -21,6 +21,7 @@ layout_mode = 2
 
 [node name="PreviousPageButton" type="Button" parent="HBoxContainer" unique_id=688244328]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
@@ -65,6 +66,7 @@ layout_mode = 2
 
 [node name="NextPageButton" type="Button" parent="HBoxContainer" unique_id=336712358]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
