@@ -18,6 +18,9 @@ public partial class LevelSelectSection : PanelContainer
 	public override void _Ready()
 	{
 		button = GetNode<Button>("%Button");
+
+		AudioHelpers.RegisterButtons(new Button[] { button });
+
 		resourceCountLabel = GetNode<Label>("%ResourceCountLabel");
 		levelNumberLabel = GetNode<Label>("%LevelNumberLabel");
 		completedIndicator = GetNode<TextureRect>("%CompletedIndicator");

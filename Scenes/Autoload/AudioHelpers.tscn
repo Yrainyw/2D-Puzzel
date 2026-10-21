@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://c1i41f6at48pv" path="res://Scenes/Autoload/AudioHelpers.cs" id="1_lby74"]
 [ext_resource type="AudioStream" uid="uid://cqydj88nwy7gu" path="res://Assets/Audio/explosion_01.wav" id="1_n0sl6"]
 [ext_resource type="AudioStream" uid="uid://b2gwhqbr3h15g" path="res://Assets/Audio/explosion_02.wav" id="2_lby74"]
+[ext_resource type="AudioStream" uid="uid://bix1q4vv5p145" path="res://Assets/Audio/Dancing at the Inn.mp3" id="2_tbv3x"]
 [ext_resource type="AudioStream" uid="uid://bpsqmggi3i4cl" path="res://Assets/Audio/explosion_03.wav" id="3_nu7jm"]
+[ext_resource type="AudioStream" uid="uid://dbsapm6xu7mqv" path="res://Assets/Audio/click.wav" id="5_nu7jm"]
+[ext_resource type="AudioStream" uid="uid://546sxq421ryr" path="res://Assets/Audio/victory.wav" id="6_ka76j"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_seftw"]
 streams_count = 3
@@ -14,7 +17,22 @@ stream_2/stream = ExtResource("3_nu7jm")
 [node name="AudioHelpers" type="Node" unique_id=141077907]
 script = ExtResource("1_lby74")
 
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1399842114]
+stream = ExtResource("2_tbv3x")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
 [node name="ExplosionAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=446995240]
 stream = SubResource("AudioStreamRandomizer_seftw")
+volume_db = -6.0
 max_polyphony = 3
+bus = &"SFX"
+
+[node name="ClickAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=894351592]
+stream = ExtResource("5_nu7jm")
+bus = &"SFX"
+
+[node name="VictoryAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1688150828]
+stream = ExtResource("6_ka76j")
 bus = &"SFX"

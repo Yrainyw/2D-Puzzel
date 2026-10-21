@@ -1,3 +1,4 @@
+using Game.Autoload;
 using Godot;
 
 namespace Game.UI;
@@ -13,6 +14,9 @@ public partial class MainMenu : Node
 	{
 		playButton = GetNode<Button>("%PlayButton");
 		quitButton = GetNode<Button>("%QuitButton");
+
+		AudioHelpers.RegisterButtons(new Button[] { playButton, quitButton });
+
 		mainMenuContainer = GetNode<Control>("%MainMenuContainer");
 		levelSelectScreen = GetNode<LevelSelectScreen>("%LevelSelectScreen");
 
