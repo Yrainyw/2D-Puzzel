@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://37xlv2p65cn6" path="res://Scenes/UI/GameUI.tscn" id="6_v1gob"]
 [ext_resource type="PackedScene" uid="uid://cbpi5dhsumq4i" path="res://Scenes/Building/BuildingGhost.tscn" id="8_50glp"]
 [ext_resource type="PackedScene" uid="uid://ci7tn6goo11ig" path="res://Scenes/GoldMine.tscn" id="9_vy5pj"]
+[ext_resource type="PackedScene" uid="uid://b48oov61mqmty" path="res://Scenes/Manager/FloatingTextManager.tscn" id="13_qx3j0"]
 
 [node name="BaseLevel" type="Node" unique_id=607546042]
 script = ExtResource("1_r150o")
@@ -58,3 +59,5 @@ tile_set = ExtResource("2_idj7w")
 
 [node name="ResourceIndicatorManager" parent="." unique_id=1473754808 node_paths=PackedStringArray("gridManager") instance=ExtResource("6_jsyjl")]
 gridManager = NodePath("../GridManager")
+
+[node name="FloatingTextManager" parent="." unique_id=1635615301 instance=ExtResource("13_qx3j0")]
