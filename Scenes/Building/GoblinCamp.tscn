@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://c4fh2hyyxwso0"]
 
 [ext_resource type="PackedScene" uid="uid://dc1f25ev6fa2h" path="res://Scenes/Component/BuildingComponent.tscn" id="1_rqj6u"]
+[ext_resource type="Script" uid="uid://c7jbjicedpyb6" path="res://Scenes/Building/GoblinCamp.cs" id="1_w6run"]
 [ext_resource type="PackedScene" uid="uid://chvukmv1jy4a6" path="res://Scenes/Component/BuildingAnimatorComponent.tscn" id="2_rx6vd"]
 [ext_resource type="Texture2D" uid="uid://dc4pgsv3x28xj" path="res://Assets/Buildings/wood_tower_red.png" id="3_rx6vd"]
+[ext_resource type="Texture2D" uid="uid://b677v245r3ui3" path="res://Assets/Buildings/wood_tower_destroyed.png" id="4_hdml1"]
+[ext_resource type="Texture2D" uid="uid://cxivrlc4x78mq" path="res://Assets/Effects/fire.png" id="5_mtmfl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hdml1"]
 atlas = ExtResource("3_rx6vd")
@@ -38,10 +41,79 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hdml1")
+}],
+"loop": 1,
+"name": &"destroyed",
+"speed": 5.0
 }]
 
-[node name="GoblinCamp" type="Node2D" unique_id=588369109]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n7ss"]
+atlas = ExtResource("5_mtmfl")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d4s0"]
+atlas = ExtResource("5_mtmfl")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvkc4"]
+atlas = ExtResource("5_mtmfl")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0aem"]
+atlas = ExtResource("5_mtmfl")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n35qf"]
+atlas = ExtResource("5_mtmfl")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roox5"]
+atlas = ExtResource("5_mtmfl")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xpp3"]
+atlas = ExtResource("5_mtmfl")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15pk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n7ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d4s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvkc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0aem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n35qf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roox5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xpp3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="GoblinCamp" type="Node2D" unique_id=588369109 node_paths=PackedStringArray("buildingComponent", "fireAnimatedSprite2D", "animatedSprite2D")]
 y_sort_enabled = true
+script = ExtResource("1_w6run")
+buildingComponent = NodePath("BuildingComponent")
+fireAnimatedSprite2D = NodePath("BuildingAnimatorComponent/AnimatedSprite2D/FireAnimatedSprite2D")
+animatedSprite2D = NodePath("BuildingAnimatorComponent/AnimatedSprite2D")
 
 [node name="BuildingComponent" parent="." unique_id=210722747 node_paths=PackedStringArray("buildingAnimatorComponent") instance=ExtResource("1_rqj6u")]
 buildingResourcePath = "uid://caes3cb5pbina"
@@ -50,9 +122,17 @@ buildingAnimatorComponent = NodePath("../BuildingAnimatorComponent")
 [node name="BuildingAnimatorComponent" parent="." unique_id=1600501637 instance=ExtResource("2_rx6vd")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BuildingAnimatorComponent" unique_id=454981208]
+unique_name_in_owner = true
 position = Vector2(64, 96)
 sprite_frames = SubResource("SpriteFrames_rx6vd")
 autoplay = "default"
-frame_progress = 0.99809915
 centered = false
 offset = Vector2(-128, -160)
+
+[node name="FireAnimatedSprite2D" type="AnimatedSprite2D" parent="BuildingAnimatorComponent/AnimatedSprite2D" unique_id=341895523]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -80)
+sprite_frames = SubResource("SpriteFrames_15pk6")
+autoplay = "default"
+frame_progress = 0.44784868
