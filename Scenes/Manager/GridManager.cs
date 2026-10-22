@@ -13,6 +13,7 @@ public partial class GridManager : Node
 	private const string IS_BUILDABLE = "is_buildable";
 	private const string IS_WOOD = "is_wood";
 	private const string IS_IGNORED = "is_ignored";
+	private const string SHEEP_GROUP = "sheep";
 
 	[Signal]
 	public delegate void ResourceTilesUpdatedEventHandler(int collectedTiles);
@@ -74,8 +75,14 @@ public partial class GridManager : Node
 	public bool IsTileAreaBuildable(Rect2I tileArea, bool isAttackTiles = false)
 	{
 		var tiles = tileArea.ToTiles();
+		var sheepTiles = GetSheepOccupiedTiles();
 
 		if (tiles.Count == 0) return false;
+
+		if (tiles.Any((tilePosition) => sheepTiles.Contains(tilePosition)))
+		{
+			return false;
+		}
 
 		(TileMapLayer firstTileMapLayer, _) = GetTileCustomData(tiles[0], IS_BUILDABLE);
 
@@ -107,8 +114,12 @@ public partial class GridManager : Node
 
 	public void HighlightBuildableTiles(bool isAttackTiles = false)
 	{
+		var sheepTiles = GetSheepOccupiedTiles();
+
 		foreach (var tilePosition in GetBuildableTileSet(isAttackTiles))
 		{
+			if (sheepTiles.Contains(tilePosition)) continue;
+
 			highlightTilemapLayer.SetCell(tilePosition, 0, Vector2I.Zero);
 		}
 	}
@@ -116,7 +127,7 @@ public partial class GridManager : Node
 	public void HighlightExpandedBuildableTiles(Rect2I tileArea, int radius)
 	{
 		var validTiles = GetValidTilesInRadius(tileArea, radius).ToHashSet();
-		var expandedTiles = validTiles.Except(validBuildableTiles).Except(occupiedTiles);
+		var expandedTiles = validTiles.Except(validBuildableTiles).Except(occupiedTiles).Except(GetSheepOccupiedTiles());
 		var atlasCoords = new Vector2I(1, 0);
 
 		foreach (var tilePosition in expandedTiles)
@@ -430,7 +441,6 @@ public partial class GridManager : Node
 		dangerBuildingToTiles.Clear();
 		attackBuildingToTiles.Clear();
 
-
 		var buildingComponents = BuildingComponent.GetValidBuildingComponents(this);
 
 		foreach (var buildingComponent in buildingComponents)
@@ -550,5 +560,22 @@ public partial class GridManager : Node
 	private void OnBuildingDisabled(BuildingComponent buildingComponent)
 	{
 		RecalculateGrid();
+	}
+
+	// 获取所有羊占用的格子
+	private HashSet<Vector2I> GetSheepOccupiedTiles()
+	{
+		var sheepTiles = new HashSet<Vector2I>();
+
+		foreach (var node in GetTree().GetNodesInGroup(SHEEP_GROUP))
+		{
+			if (node is Node2D sheep)
+			{
+				var tilePosition = ConvertWorldPositionToTilePosition(sheep.GlobalPosition);
+				
+				sheepTiles.Add(tilePosition);
+			}
+		}
+		return sheepTiles;
 	}
 }

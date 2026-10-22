@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d12xqwqsfrndb" path="res://Scenes/Building/Base.tscn" id="3_k8um8"]
 [ext_resource type="PackedScene" uid="uid://ci7tn6goo11ig" path="res://Scenes/GoldMine.tscn" id="4_jex3y"]
 [ext_resource type="PackedScene" uid="uid://d26tqqltwols" path="res://Scenes/Building/Village.tscn" id="4_t6w0q"]
+[ext_resource type="PackedScene" uid="uid://xcsux0fvd3rm" path="res://Scenes/AnimatedSheep.tscn" id="8_ynupv"]
 
 [node name="MainMenu" type="Node" unique_id=874091968]
 script = ExtResource("1_jex3y")
@@ -75,6 +76,24 @@ position = Vector2(1088, 192)
 [node name="Village2" parent="YSortRoot" unique_id=894304084 instance=ExtResource("4_t6w0q")]
 position = Vector2(512, 128)
 
+[node name="AnimatedSheep" parent="YSortRoot" unique_id=1834702711 instance=ExtResource("8_ynupv")]
+position = Vector2(256, 512)
+
+[node name="AnimatedSheep2" parent="YSortRoot" unique_id=917909354 instance=ExtResource("8_ynupv")]
+position = Vector2(320, 576)
+
+[node name="AnimatedSheep3" parent="YSortRoot" unique_id=164043161 instance=ExtResource("8_ynupv")]
+position = Vector2(1280, 192)
+
+[node name="AnimatedSprite2D" parent="YSortRoot/AnimatedSheep3" index="0" unique_id=870815115]
+flip_h = true
+
+[node name="AnimatedSheep4" parent="YSortRoot" unique_id=1696327823 instance=ExtResource("8_ynupv")]
+position = Vector2(960, 704)
+
+[node name="AnimatedSprite2D" parent="YSortRoot/AnimatedSheep4" index="0" unique_id=870815115]
+flip_h = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=193313569]
 follow_viewport_scale = 1.19
 
@@ -122,3 +141,5 @@ text = "QUIT"
 unique_name_in_owner = true
 
 [editable path="YSortRoot/BaseTerrainTileMapLayer/ElevationLayer"]
+[editable path="YSortRoot/AnimatedSheep3"]
+[editable path="YSortRoot/AnimatedSheep4"]

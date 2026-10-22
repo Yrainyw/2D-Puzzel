@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://ct4qxijf8jrjh" path="res://Resources/tiles.tres" id="2_8ux1l"]
 [ext_resource type="Resource" uid="uid://chsc5nek0peg1" path="res://Resources/Level/level_01.tres" id="2_b2j2l"]
 [ext_resource type="PackedScene" uid="uid://c8ycxmvr0s1b4" path="res://Scenes/Level/util/ElevationLayer.tscn" id="3_mddlf"]
+[ext_resource type="PackedScene" uid="uid://xcsux0fvd3rm" path="res://Scenes/AnimatedSheep.tscn" id="5_f4tjx"]
 
 [node name="Level1" unique_id=607546042 instance=ExtResource("1_g1stx")]
 levelDefinitionResource = ExtResource("2_b2j2l")
@@ -40,10 +41,27 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAHAAYAAQAAAAAAAAAOAAUAAQAAAAAAAAANAAsAAQAAAAAAAAAOAAoAAQAAAAAAAAAMAAoAAQAAAAAAAAAHAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAIAAsAAQAAAAAAAAAHAAoAAQAAAAAAAAAJAAcAAQAAAAAAAAAIAAcAAQAAAAAAAAA=")
 tile_set = ExtResource("2_8ux1l")
 
-[node name="Base" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="1" unique_id=1650665400]
+[node name="DecorationTileMapLayer" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="1" unique_id=544126017]
+tile_map_data = PackedByteArray("AAAMAAUACQAAAAAAAAAKAAkACQAAAAAAAAA=")
+
+[node name="Base" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="2" unique_id=1650665400]
 position = Vector2(0, 448)
 
-[node name="GoldMine" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="2" unique_id=805685447]
+[node name="GoldMine" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="3" unique_id=805685447]
 position = Vector2(832, 384)
 
+[node name="AnimatedSheep" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="5" unique_id=1834702711]
+position = Vector2(416, 800)
+
+[node name="AnimatedSheep4" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="6" unique_id=1656691141 instance=ExtResource("5_f4tjx")]
+position = Vector2(672, 224)
+
+[node name="AnimatedSheep2" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="7" unique_id=1177288525 instance=ExtResource("5_f4tjx")]
+position = Vector2(480, 864)
+
+[node name="AnimatedSheep3" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="8" unique_id=1177522201 instance=ExtResource("5_f4tjx")]
+position = Vector2(1056, 480)
+
 [editable path="YSortRoot/BaseTerrainTileMapLayer/ElevationLayer"]
+[editable path="YSortRoot/AnimatedSheep2"]
+[editable path="YSortRoot/AnimatedSheep3"]

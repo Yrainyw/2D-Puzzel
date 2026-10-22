@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://dcj4xg0thofs2" path="res://Resources/Level/level_03.tres" id="2_jnmh1"]
 [ext_resource type="TileSet" uid="uid://ct4qxijf8jrjh" path="res://Resources/tiles.tres" id="3_ex3qd"]
 [ext_resource type="PackedScene" uid="uid://c4fh2hyyxwso0" path="res://Scenes/Building/GoblinCamp.tscn" id="5_cgcbr"]
+[ext_resource type="PackedScene" uid="uid://xcsux0fvd3rm" path="res://Scenes/AnimatedSheep.tscn" id="6_e3ojo"]
 
 [node name="Level3" unique_id=607546042 instance=ExtResource("1_7viy3")]
 levelDefinitionResource = ExtResource("2_jnmh1")
@@ -43,13 +44,32 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAYAAIAAQAAAAAAAAAZAAMAAQAAAAAAAAAYAAMAAQAAAAAAAAAYAAQAAQAAAAAAAAAWAAMAAQAAAAAAAAAVAAQAAQAAAAAAAAAUAAQAAQAAAAAAAAAVAAUAAQAAAAAAAAAWAAUAAQAAAAAAAAAXAAUAAQAAAAAAAAAXAAEAAQAAAAAAAAD8/wQAAQAAAAAAAAD9/wUAAQAAAAAAAAD+/wUAAQAAAAAAAAD+/wQAAQAAAAAAAAAAAAUAAQAAAAAAAAD//wYAAQAAAAAAAAAGAAoAAQAAAAAAAAAHAAsAAQAAAAAAAAACAAoAAQAAAAAAAAABAAsAAQAAAAAAAAAFAP//AQAAAAAAAAAHAAAAAQAAAAAAAAADAA4AAQAAAAAAAAACAA0AAQAAAAAAAAAFAA4AAQAAAAAAAAAGAA0AAQAAAAAAAAAWAAAAAQAAAAAAAAA=")
 tile_set = ExtResource("3_ex3qd")
 
-[node name="Base" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="1" unique_id=1650665400]
+[node name="DecorationTileMapLayer" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="1" unique_id=544126017]
+tile_map_data = PackedByteArray("AAAAAA0ABwAAAAAAAAAHAAwACQAAAAAAAAACAA4ABgAAAAAAAAAGAAAACAAAAAAAAAD//wAACQAAAAAAAAABAP//BwAAAAAAAAD//wQABwAAAAAAAAAVAP//CQAAAAAAAAATAAIACAAAAAAAAAARAAMACQAAAAAAAAA=")
+
+[node name="Base" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="2" unique_id=1650665400]
 position = Vector2(1024, -128)
 
-[node name="GoldMine" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="2" unique_id=805685447]
+[node name="GoldMine" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="3" unique_id=805685447]
 position = Vector2(256, 832)
 
 [node name="GoblinCamp" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="4" unique_id=588369109 instance=ExtResource("5_cgcbr")]
 position = Vector2(-192, 128)
 
+[node name="AnimatedSheep" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="6" unique_id=1834702711]
+position = Vector2(-128, 0)
+
+[node name="AnimatedSheep2" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="7" unique_id=1028573447 instance=ExtResource("6_e3ojo")]
+position = Vector2(88, 1008)
+
+[node name="AnimatedSheep3" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="8" unique_id=1594004791 instance=ExtResource("6_e3ojo")]
+position = Vector2(128, 1062)
+
+[node name="AnimatedSheep4" parent="YSortRoot" parent_id_path=PackedInt32Array(678565419) index="9" unique_id=167145102 instance=ExtResource("6_e3ojo")]
+position = Vector2(1555, -10)
+
+[node name="AnimatedSprite2D" parent="YSortRoot/AnimatedSheep4" index="0" unique_id=870815115]
+flip_h = true
+
 [editable path="YSortRoot/BaseTerrainTileMapLayer/ElevationLayer"]
+[editable path="YSortRoot/AnimatedSheep4"]

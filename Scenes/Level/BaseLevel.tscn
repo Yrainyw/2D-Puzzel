@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://37xlv2p65cn6" path="res://Scenes/UI/GameUI.tscn" id="6_v1gob"]
 [ext_resource type="PackedScene" uid="uid://cbpi5dhsumq4i" path="res://Scenes/Building/BuildingGhost.tscn" id="8_50glp"]
 [ext_resource type="PackedScene" uid="uid://ci7tn6goo11ig" path="res://Scenes/GoldMine.tscn" id="9_vy5pj"]
+[ext_resource type="TileSet" uid="uid://dp5fd5fxf2cg" path="res://Resources/DecorationTiles.tres" id="10_6f0v8"]
 [ext_resource type="PackedScene" uid="uid://b48oov61mqmty" path="res://Scenes/Manager/FloatingTextManager.tscn" id="13_qx3j0"]
+[ext_resource type="PackedScene" uid="uid://xcsux0fvd3rm" path="res://Scenes/AnimatedSheep.tscn" id="14_jma8p"]
 
 [node name="BaseLevel" type="Node" unique_id=607546042]
 script = ExtResource("1_r150o")
@@ -48,6 +50,10 @@ tile_set = ExtResource("2_kln2b")
 y_sort_enabled = true
 tile_set = ExtResource("2_kln2b")
 
+[node name="DecorationTileMapLayer" type="TileMapLayer" parent="YSortRoot" unique_id=544126017]
+y_sort_enabled = true
+tile_set = ExtResource("10_6f0v8")
+
 [node name="Base" parent="YSortRoot" unique_id=1650665400 instance=ExtResource("5_pbw6q")]
 unique_name_in_owner = true
 
@@ -58,6 +64,8 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.7058824)
 y_sort_enabled = true
 tile_set = ExtResource("2_idj7w")
+
+[node name="AnimatedSheep" parent="YSortRoot" unique_id=1834702711 groups=["sheep"] instance=ExtResource("14_jma8p")]
 
 [node name="ResourceIndicatorManager" parent="." unique_id=1473754808 node_paths=PackedStringArray("gridManager") instance=ExtResource("6_jsyjl")]
 gridManager = NodePath("../GridManager")

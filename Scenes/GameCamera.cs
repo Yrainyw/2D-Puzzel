@@ -42,10 +42,17 @@ public partial class GameCamera : Camera2D
 		GlobalPosition += movementVector * PAN_SPEED * (float)delta;
 
 		var viewportRect = GetViewportRect();
-		var halfWidth = viewportRect.Size.X / 2;
-		var halfHeight = viewportRect.Size.Y / 2;
-		var xClamped = Mathf.Clamp(GlobalPosition.X, LimitLeft + halfWidth, LimitRight - halfWidth);
-		var yClamped = Mathf.Clamp(GlobalPosition.Y, LimitTop + halfHeight, LimitBottom - halfHeight);
+		var halfWidth = viewportRect.Size.X / (2 * Zoom.X);
+		var halfHeight = viewportRect.Size.Y / (2 * Zoom.Y);
+
+		var minX = LimitLeft + halfWidth;
+		var maxX = LimitRight - halfWidth;
+		var minY = LimitTop + halfHeight;
+		var maxY = LimitBottom - halfHeight;
+
+		// 地图太小时，将摄像机固定在地图中心
+		var xClamped = minX <= maxX ? Mathf.Clamp(GlobalPosition.X, minX, maxX) : (LimitLeft + LimitRight) / 2f;
+		var yClamped = minY <= maxY ? Mathf.Clamp(GlobalPosition.Y, minY, maxY) : (LimitTop + LimitBottom) / 2f;
 
 		GlobalPosition = new Vector2(xClamped, yClamped);
 		ApplyCameraShake(delta);

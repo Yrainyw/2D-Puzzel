@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://xcsux0fvd3rm"]
+
+[ext_resource type="Texture2D" uid="uid://cjxdq33loxix5" path="res://Assets/Tiles/Deco/HappySheep_Idle.png" id="1_n7v8x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp465"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx8uc"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eghk3"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1myc"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr584"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_062bh"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w10o6"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft4rg"]
+atlas = ExtResource("1_n7v8x")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15pk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp465")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx8uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eghk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1myc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr584")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_062bh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w10o6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft4rg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="AnimatedSheep" type="Node2D" unique_id=1834702711 groups=["sheep"]]
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=870815115]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_15pk6")
+autoplay = "default"
+frame_progress = 0.3310185
+offset = Vector2(0, -22)
