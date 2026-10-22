@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ctucdqvqcii8p"]
+
+[ext_resource type="Script" uid="uid://b0chvdkops3xv" path="res://Scenes/UI/EscapeMenu.cs" id="1_6i5jx"]
+[ext_resource type="PackedScene" uid="uid://huot1dh2qncn" path="res://Scenes/UI/OptionsMenu.tscn" id="2_5kp7u"]
+
+[node name="EscapeMenu" type="CanvasLayer" unique_id=1439784041]
+layer = 2
+script = ExtResource("1_6i5jx")
+mainMenuScenePath = "uid://b5hhy4jc76a01"
+optionsMenuScene = ExtResource("2_5kp7u")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1521161089]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1184758876]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=651327747]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=657770748]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1966540754]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=632208701]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=640783768]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1877750238]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit to Menu"

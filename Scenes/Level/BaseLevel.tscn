@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0lcfnrwmhjru" path="res://Scenes/Manager/GridManager.tscn" id="2_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://bsx6nfg0ylrxk" path="res://Scenes/UI/LevelCompleteScreen.tscn" id="2_toevt"]
 [ext_resource type="PackedScene" uid="uid://vrwjnql4loab" path="res://Scenes/GameCamera.tscn" id="2_xerb2"]
+[ext_resource type="PackedScene" uid="uid://ctucdqvqcii8p" path="res://Scenes/UI/EscapeMenu.tscn" id="3_ah6f1"]
 [ext_resource type="PackedScene" uid="uid://ctplj8mxk85xe" path="res://Scenes/Manager/BuildingManager.tscn" id="3_jw32o"]
 [ext_resource type="PackedScene" uid="uid://d12xqwqsfrndb" path="res://Scenes/Building/Base.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://c5vgk0weuq1ga" path="res://Scenes/Manager/ResourceIndicatorManager.tscn" id="6_jsyjl"]
@@ -17,6 +18,7 @@
 [node name="BaseLevel" type="Node" unique_id=607546042]
 script = ExtResource("1_r150o")
 levelCompleteScreenScene = ExtResource("2_toevt")
+escapeMenuScene = ExtResource("3_ah6f1")
 
 [node name="BuildingManager" parent="." unique_id=946365415 node_paths=PackedStringArray("gridManager", "gameUI", "ySortRoot") instance=ExtResource("3_jw32o")]
 gridManager = NodePath("../GridManager")

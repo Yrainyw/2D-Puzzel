@@ -53,16 +53,19 @@ public partial class BuildingManager : Node
 			if (evt.IsActionPressed(ACTION_RIGHT_CLICK))
 				{
 					DestroyBuildingAtHoveredCellPosition();
+					GetViewport().SetInputAsHandled();
 				}
 				break;
 			case State.PlacingBuilding:
 				if (evt.IsActionPressed(ACTION_CANCEL))
 				{
 					ChangeState(State.Normal);
+					GetViewport().SetInputAsHandled();
 				}
 				else if (toPlaceBuildingResource != null && evt.IsActionPressed(ACTION_LEFT_CLICK))
 				{
 					PlaceBuildingAtHoveredCellPosition();
+					GetViewport().SetInputAsHandled();
 				}
 				break;
 			default:

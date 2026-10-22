@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ifpbs2efxem3" path="res://Scenes/UI/OptionsMenu.cs" id="1_xihfp"]
 
 [node name="OptionsMenu" type="CanvasLayer" unique_id=1740527666]
+layer = 3
 script = ExtResource("1_xihfp")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=984609704]
