@@ -6,38 +6,43 @@ namespace Game.Autoload;
 
 public partial class LevelManager : Node
 {
-	public static LevelManager Instance { get; private set; }
+	private static LevelManager instance;
 	
 	[Export] private LevelDefinitionResources[] levelDefinitions;
 
-	private int currentLevelIndex;
+	private static int currentLevelIndex;
 
 	public override void _Notification(int what)
 	{
 		if (what == NotificationSceneInstantiated)
 		{
-			Instance = this;
+			instance = this;
 		}
 	}
 
 	public static LevelDefinitionResources[] GetLevelDefinitions()
 	{
-		return Instance.levelDefinitions.ToArray();
+		return instance.levelDefinitions.ToArray();
 	}
 
-	public void ChangeToLevel(int levelIndex)
+	public static void ChangeToLevel(int levelIndex)
 	{
-		if (levelIndex >= levelDefinitions.Length || levelIndex < 0) return;
+		if (levelIndex >= instance.levelDefinitions.Length || levelIndex < 0) return;
 
 		currentLevelIndex = levelIndex;
 
-		var levelDefinition = levelDefinitions[currentLevelIndex];
+		var levelDefinition = instance.levelDefinitions[currentLevelIndex];
 
-		GetTree().ChangeSceneToFile(levelDefinition.LevelScenePath);
+		instance.GetTree().ChangeSceneToFile(levelDefinition.LevelScenePath);
 	}
 
-	public void ChangeToNextLevel()
+	public static void ChangeToNextLevel()
 	{
 		ChangeToLevel(currentLevelIndex + 1);
+	}
+
+	public static bool IsLastLevel()
+	{
+		return currentLevelIndex == instance.levelDefinitions.Length - 1;
 	}
 }

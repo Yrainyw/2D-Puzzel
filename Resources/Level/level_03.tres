@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_wr3bu")
 Id = "concrete_bricks"
-StartingResourceCount = 16
+StartingResourceCount = 14
 LevelScenePath = "uid://bpqmnvrwqvpyw"
 metadata/_custom_type_script = "uid://xes342l2vlgg"
