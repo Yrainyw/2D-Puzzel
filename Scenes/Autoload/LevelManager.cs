@@ -33,9 +33,11 @@ public partial class LevelManager : Node
 
 		var levelDefinition = instance.levelDefinitions[currentLevelIndex];
 
-		instance.GetTree().ChangeSceneToFile(levelDefinition.LevelScenePath);
+		// 播放过渡动画并切换关卡
+		var screenTransitionManager = instance.GetNode<ScreenTransitionManager>("/root/ScreenTransitionManager");
+		
+		screenTransitionManager.TransitionToScene(levelDefinition.LevelScenePath);
 	}
-
 	public static void ChangeToNextLevel()
 	{
 		ChangeToLevel(currentLevelIndex + 1);

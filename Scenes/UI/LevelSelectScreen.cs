@@ -12,6 +12,7 @@ public partial class LevelSelectScreen : MarginContainer
 	public delegate void BackPressedEventHandler();
 	
 	[Export] private PackedScene LevelSelectSectionScene;
+	[Export] private CanvasLayer mainMenuCanvas;
 
 	private GridContainer gridContainer;
 	private Button backButton;
@@ -70,6 +71,7 @@ public partial class LevelSelectScreen : MarginContainer
 		nextPageButton.Modulate = pageIndex == maxPageIndex ? Colors.Transparent : Colors.White;
 	}
 
+	// 选择关卡并隐藏菜单
 	private void OnLevelSelected(int levelIndex)
 	{
 		LevelManager.ChangeToLevel(levelIndex);

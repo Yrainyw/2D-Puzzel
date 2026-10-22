@@ -31,7 +31,7 @@ public partial class GameUI : CanvasLayer
 	{
 		Visible = false;
 	}
-
+	
 	private void CreateBuildingSections()
 	{
 		foreach (var buildingResource in buildingResources)

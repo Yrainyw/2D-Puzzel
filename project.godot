@@ -29,6 +29,7 @@ SaveManager="*uid://0gva1rde247g"
 SettingsManager="*uid://ps8xmnr5rd03"
 Cursor="*uid://hixtiirhro2v"
 AudioHelpers="*uid://b0liw4spjrdgc"
+ScreenTransitionManager="*uid://b3xaxeq4b1m5"
 
 [display]
 

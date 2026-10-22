@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://uacibkifflcw"]
+
+[ext_resource type="Script" uid="uid://dltsd58frb4gb" path="res://Scenes/UI/ScreenTransition.cs" id="1_4fw8a"]
+[ext_resource type="Shader" uid="uid://cfhw5b6xje8dv" path="res://Scenes/UI/ScreenTransition.gdshader" id="1_y7tpi"]
+[ext_resource type="Texture2D" uid="uid://b5h8plmct8k4t" path="res://Assets/UI/screen-wipe.png" id="2_ypc7l"]
+
+[sub_resource type="Animation" id="Animation_4fw8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ypc7l"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"EmitScreenCovered"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kind1"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4fw8a"]
+_data = {
+&"RESET": SubResource("Animation_4fw8a"),
+&"fade_in": SubResource("Animation_ypc7l"),
+&"fade_out": SubResource("Animation_kind1")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hb5db"]
+shader = ExtResource("1_y7tpi")
+shader_parameter/wipeImage = ExtResource("2_ypc7l")
+shader_parameter/percent = 0.0
+
+[node name="ScreenTransition" type="CanvasLayer" unique_id=801644471]
+layer = 100
+script = ExtResource("1_4fw8a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1937862810]
+libraries/ = SubResource("AnimationLibrary_4fw8a")
+autoplay = &"fade_in"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=404616667]
+material = SubResource("ShaderMaterial_hb5db")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2784314, 0.67058825, 0.6627451, 1)

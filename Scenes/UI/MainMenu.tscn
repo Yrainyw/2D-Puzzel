@@ -137,8 +137,15 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "QUIT"
 
-[node name="LevelSelectScreen" parent="CanvasLayer" unique_id=868672657 instance=ExtResource("2_744d7")]
+[node name="LevelSelectScreen" parent="CanvasLayer" unique_id=868672657 node_paths=PackedStringArray("mainMenuCanvas") instance=ExtResource("2_744d7")]
 unique_name_in_owner = true
+mainMenuCanvas = NodePath("..")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=454977238]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.1882353, 0.5882353, 0.41568628, 1)
 
 [editable path="YSortRoot/BaseTerrainTileMapLayer/ElevationLayer"]
 [editable path="YSortRoot/AnimatedSheep3"]
